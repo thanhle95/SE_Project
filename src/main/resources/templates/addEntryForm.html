@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="global">
+        <form action="#" th:action="@{/addnewentry}" th:object="${newEntry}" method="post">
+            <fieldset>
+                <legend>Add New Entry</legend>
+                <p>
+                    <label for="entryName">Entry Name :</label>
+                    <input id="entryName" type="text" th:field="*{entryName}" />
+                </p>
+                <p>
+                    <label for="FPPNum">FPP Number : </label>
+                    <input id="FPPNum" type="text" th:field="*{FPPNum}" />
+                </p>
+
+                <p>
+                    <label for="MPPNum">MPP Number : </label>
+                    <input id="MPPNum" type="text" th:field="*{MPPNum}" />
+                </p>
+
+                <p>
+                    <label for="startDate">Start Date : </label>
+                    <input id="startDate" type="text" th:field="*{startDate}" />
+                </p>
+                <p>
+                    <label for="endDate">Start Date : </label>
+                    <input id="endDate" type="text" th:field="*{endDate}" />
+                </p>
+                <p>
+                    <input id="btnAdd" type="submit" value="Add" />
+                </p>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
