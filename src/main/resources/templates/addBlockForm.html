@@ -2,49 +2,55 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Block</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
-    <div id="global">
-        <form action="#" th:action="@{/addnewblock}" th:object="${newBlock}" method="post">
-            <fieldset>
-                <legend>Add New Block</legend>
-                <p>
-                    <label for="entryList">Select Entry: </label>
-                    <select id="entryList"
-                        th:field="*{entryName}">
-                        <option th:each="entryName : ${entryNameList}" th:value="${entryName}"
-                                th:text="${entryName}"></option>
-                    </select>
-                </p>
-                <p>
-                    <label for="blockName">Block Name : </label>
-                    <input id="blockName" type="text" th:field="*{blockName}" />
-                </p>
+<div class="container my-5">
+    <div class="card">
+        <div class="card-body">
+            <form action="#" th:action="@{/addnewblock}" th:object="${newBlock}" method="post">
+                <fieldset>
+                    <legend>Add New Block</legend>
+                    <p>
+                        <label for="entryList">Select Entry: </label>
+                        <select id="entryList"
+                                th:field="*{entryName}">
+                            <option th:each="entryName : ${entryNameList}" th:value="${entryName}"
+                                    th:text="${entryName}"></option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="blockName">Block Name : </label>
+                        <input id="blockName" type="text" th:field="*{blockName}"/>
+                    </p>
 
-                <p>
-                    <label for="FPPNum">FPP Number : </label>
-                    <input id="FPPNum" type="text" th:field="*{FPPNum}" />
-                </p>
+                    <p>
+                        <label for="FPPNum">FPP Number : </label>
+                        <input id="FPPNum" type="text" th:field="*{FPPNum}"/>
+                    </p>
 
-                <p>
-                    <label for="MPPNum">MPP Number : </label>
-                    <input id="MPPNum" type="text" th:field="*{MPPNum}" />
-                </p>
+                    <p>
+                        <label for="MPPNum">MPP Number : </label>
+                        <input id="MPPNum" type="text" th:field="*{MPPNum}"/>
+                    </p>
 
-                <p>
-                    <label for="startDate">Start Date : </label>
-                    <input id="startDate" type="text" th:field="*{startDate}" />
-                </p>
-                <p>
-                    <label for="endDate">Start Date : </label>
-                    <input id="endDate" type="text" th:field="*{endDate}" />
-                </p>
-                <p>
-                    <input id="btnAdd" type="submit" value="Add" />
-                </p>
-            </fieldset>
-        </form>
+                    <p>
+                        <label for="startDate">Start Date : </label>
+                        <input id="startDate" type="text" th:field="*{startDate}"/>
+                    </p>
+                    <p>
+                        <label for="endDate">End Date : </label>
+                        <input id="endDate" type="text" th:field="*{endDate}"/>
+                    </p>
+                    <p>
+                        <input id="btnAdd" class="btn btn-success" type="submit" value="Add"/>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
     </div>
+</div>
 </body>
 </html>

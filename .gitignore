@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+/src/main/java/edu/mum/mumsched/service/BlockService.java
+/src/main/java/edu/mum/mumsched/service/imp/BlockServiceImp.java
+/src/main/java/edu/mum/mumsched/service/EntryService.java
+/src/main/java/edu/mum/mumsched/service/imp/EntryServiceImp.java
