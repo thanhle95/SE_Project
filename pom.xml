@@ -9,12 +9,12 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>edu.mum.mumsched</groupId>
-    <artifactId>spring_project</artifactId>
+    <artifactId>studenttospringboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring_project</name>
+    <name>studenttospringboot</name>
     <description>Demo project for Spring Boot</description>
     <properties>
-        <java.version>15</java.version>
+        <java.version>1.8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -29,6 +29,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+            <version>2.2.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>2.2.1.RELEASE</version>
         </dependency>
@@ -37,6 +42,20 @@
             <artifactId>jakarta.validation-api</artifactId>
             <version>2.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.18</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>2.4.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -44,6 +63,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.4.1</version>
             </plugin>
         </plugins>
     </build>
