@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Studentlist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -7,23 +7,31 @@
 
 </head>
 <body>
+
 <h1>Students</h1>
-<table class="table table-striped">
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Actions</th>
-    </tr>
-    <tr th:each = "student : ${studentlist}">
-        <td th:text="${student.firstName} + ' ' + ${student.lastName}"></td>
-        <td th:text="${student.email}"></td>
-        <td>
-            <a th:href="@{/edit/{id}(id=${student.id})}" class="btn btn-success">Update</a>
-            <a th:href="@{/delete/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
-        </td>
-    </tr>
-</table>
-<a href="/add" class="btn btn-success">Add Student</a>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+                <tr th:each = "student : ${studentlist}">
+                    <td th:text="${student.firstName} + ' ' + ${student.lastName}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td>
+                        <a th:href="@{/edit/{id}(id=${student.id})}" class="btn btn-success">Update</a>
+                        <a th:href="@{/delete/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </table>
+            <a href="/add" class="btn btn-success">Add Student</a>
+
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
