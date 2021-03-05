@@ -16,6 +16,9 @@ public interface CourseDao extends CrudRepository<Course, Long> {
     @Query("select c from Course c where c.courseName= :courseName")
     public Course findCourseByCourseName(@Param("courseName") String courseName);
 
+    @Query("select c from Course c where c.courseCode= :courseCode")
+    public Course findCourseByCourseCode(@Param("courseCode") String courseCode);
+
     @Query("select c from Course c")
     public List<Course> getAllCourse();
 }

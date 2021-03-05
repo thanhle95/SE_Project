@@ -2,7 +2,9 @@ package edu.mum.mumsched.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Course {
@@ -10,38 +12,30 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long courseId;
     @NotEmpty
+    private String courseCode;
     private String courseName;
-    private String teacherId;
-    private long blockId;
-    private Date startDate;
-    private Date endDate;
 
-    @JoinColumn(name="blockId",nullable = false, insertable=false, updatable=false)
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Block block;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+    private Set<Course> prerequisitesCourse = new HashSet<>();
 
-    public Block getBlock() {
-        return block;
-    }
-
-    public void setBlock(Block block) {
-        this.block = block;
-    }
-
-    public long getBlockId() {
-        return blockId;
-    }
-
-    public void setBlockId(long blockID) {
-        this.blockId = blockID;
+    public void addPrerequisitesCourse(Course course) {
+        prerequisitesCourse.add(course);
     }
 
     public long getCourseId() {
         return courseId;
     }
 
-    public void setCourseId(int courseID) {
-        this.courseId = courseID;
+    public void setCourseId(long courseId) {
+        this.courseId = courseId;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 
     public String getCourseName() {
@@ -52,27 +46,11 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public String getTeacherId() {
-        return teacherId;
+    public Set<Course> getPrerequisitesCourse() {
+        return prerequisitesCourse;
     }
 
-    public void setTeacherId(String teacherID) {
-        this.teacherId = teacherID;
-    }
-
-    public Date getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setPrerequisitesCourse(Set<Course> prerequisitesCourse) {
+        this.prerequisitesCourse = prerequisitesCourse;
     }
 }

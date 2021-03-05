@@ -21,18 +21,9 @@ public class Block {
     private String entryName;
     private long entryId;
 
-    @JoinColumn(name="entryId",nullable = false, insertable=false, updatable=false)
+    @JoinColumn(name="entryId",nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     private Entry entry;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
-    private Set<Course> courseList = new HashSet<>();
-
-    public void addCourse(Course course) {
-        courseList.add(course);
-        course.setBlock(this);
-    }
-
 
     public Entry getEntry() {
         return entry;
@@ -41,6 +32,15 @@ public class Block {
     public void setEntry(Entry entry) {
         this.entry = entry;
     }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "session")
+    private Set<Session> sessionList = new HashSet<>();
+
+    public void addSession(Session session){
+        sessionList.add(session);
+        session.setBlock(this);
+    }
+
 
     public long getBlockId() {
         return blockId;
