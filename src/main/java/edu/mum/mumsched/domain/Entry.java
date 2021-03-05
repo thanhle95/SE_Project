@@ -11,6 +11,7 @@ public class Entry {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long entryId;
+
     @NotEmpty
     private String entryName;
     private int FPPNum;
