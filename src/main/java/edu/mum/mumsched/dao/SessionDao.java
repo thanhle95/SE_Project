@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface SessionDao extends CrudRepository<Session, Long> {
-    @Query("select se from Session se where se.sessionId= :sessionID")
+    @Query("select se from Session se where se.sessionId= :sessionId")
     public Session findSessionBySessionId(@Param("sessionId") long sessionId);
 
     @Query("select se from Session se where se.block.blockId= :blockId")

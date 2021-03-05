@@ -15,8 +15,8 @@ public class Session {
     @NotEmpty
     private Date startDate;
     private Date endDate;
-    private long blockId;
-    private long courseId;
+//    private long blockId;
+//    private long courseId;
     private long facultyId;
 
     @JoinColumn(name="blockId",nullable = false)
@@ -31,7 +31,8 @@ public class Session {
         this.block = block;
     }
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "courseId")
     private Course course;
 
     public long getSessionId() {
@@ -74,19 +75,19 @@ public class Session {
         this.course = course;
     }
 
-    public long getBlockId() {
-        return blockId;
-    }
+//    public long getBlockId() {
+//        return blockId;
+//    }
+//
+//    public void setBlockId(long blockId) {
+//        this.blockId = blockId;
+//    }
 
-    public void setBlockId(long blockId) {
-        this.blockId = blockId;
-    }
-
-    public long getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(long courseId) {
-        this.courseId = courseId;
-    }
+//    public long getCourseId() {
+//        return courseId;
+//    }
+//
+//    public void setCourseId(long courseId) {
+//        this.courseId = courseId;
+//    }
 }

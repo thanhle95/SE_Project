@@ -19,7 +19,7 @@ public class Block {
     private int FPPNum;
     private int MPPNum;
     private String entryName;
-    private long entryId;
+//    private long entryId;
 
     @JoinColumn(name="entryId",nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
@@ -46,13 +46,13 @@ public class Block {
         return blockId;
     }
 
-    public long getEntryId() {
-        return entryId;
-    }
-
-    public void setEntryId(long entryID) {
-        this.entryId = entryID;
-    }
+//    public long getEntryId() {
+//        return entryId;
+//    }
+//
+//    public void setEntryId(long entryID) {
+//        this.entryId = entryID;
+//    }
 
     public void setBlockId(long blockID) {
         this.blockId = blockID;

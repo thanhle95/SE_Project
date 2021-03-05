@@ -2,7 +2,6 @@ package edu.mum.mumsched.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,12 +13,23 @@ public class Course {
     @NotEmpty
     private String courseCode;
     private String courseName;
+    
+    @ElementCollection
+    private List<Long> preCourseId;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
-    private Set<Course> prerequisitesCourse = new HashSet<>();
+    @OneToOne(mappedBy = "course")
+    private Session session;
 
-    public void addPrerequisitesCourse(Course course) {
-        prerequisitesCourse.add(course);
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public void addPreCourseId(Course course) {
+        preCourseId.add(courseId);
     }
 
     public long getCourseId() {
@@ -46,11 +56,11 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public Set<Course> getPrerequisitesCourse() {
-        return prerequisitesCourse;
+    public List<Long> getPreCourseId() {
+        return preCourseId;
     }
 
-    public void setPrerequisitesCourse(Set<Course> prerequisitesCourse) {
-        this.prerequisitesCourse = prerequisitesCourse;
+    public void setPreCourseId(List<Long> preCourseId) {
+        this.preCourseId = preCourseId;
     }
 }
