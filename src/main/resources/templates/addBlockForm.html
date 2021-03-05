@@ -14,38 +14,38 @@
                 <fieldset>
                     <legend>Add New Block</legend>
                     <p>
-                        <label for="entryList">Select Entry: </label>
-                        <select id="entryList"
+                        <label for="entryList" class="form-label">Select Entry: </label>
+                        <select id="entryList" class="form-select" aria-label="Default select example"
                                 th:field="*{entryName}">
                             <option th:each="entryName : ${entryNameList}" th:value="${entryName}"
                                     th:text="${entryName}"></option>
                         </select>
                     </p>
                     <p>
-                        <label for="blockName">Block Name : </label>
-                        <input id="blockName" type="text" th:field="*{blockName}"/>
+                        <label for="blockName" class="form-label">Block Name : </label>
+                        <input id="blockName" class="form-control" type="text" th:field="*{blockName}"/>
                     </p>
 
                     <p>
-                        <label for="FPPNum">FPP Number : </label>
-                        <input id="FPPNum" type="text" th:field="*{FPPNum}"/>
+                        <label for="FPPNum" class="form-label">FPP Number : </label>
+                        <input id="FPPNum" class="form-control" type="text" th:field="*{FPPNum}"/>
                     </p>
 
                     <p>
-                        <label for="MPPNum">MPP Number : </label>
-                        <input id="MPPNum" type="text" th:field="*{MPPNum}"/>
+                        <label for="MPPNum" class="form-label">MPP Number : </label>
+                        <input id="MPPNum" class="form-control" type="text" th:field="*{MPPNum}"/>
                     </p>
 
                     <p>
-                        <label for="startDate">Start Date : </label>
-                        <input id="startDate" type="text" th:field="*{startDate}"/>
+                        <label for="startDate" class="form-label">Start Date : </label>
+                        <input id="startDate" class="form-control" type="text" th:field="*{startDate}"/>
                     </p>
                     <p>
-                        <label for="endDate">End Date : </label>
-                        <input id="endDate" type="text" th:field="*{endDate}"/>
+                        <label for="endDate" class="form-label">End Date : </label>
+                        <input id="endDate" class="form-control" type="text" th:field="*{endDate}"/>
                     </p>
                     <p>
-                        <input id="btnAdd" class="btn btn-success" type="submit" value="Add"/>
+                        <input id="btnAdd" class="btn btn-success" type="submit" value="Add New Block"/>
                     </p>
                 </fieldset>
             </form>
