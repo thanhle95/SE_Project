@@ -10,35 +10,35 @@ import javax.validation.constraints.NotEmpty;
 public class Student {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
+    private long studentId;
 
     @NotEmpty
-    private String firstName;
-    private String lastName;
+    private String studentFirstName;
+    private String studentLastName;
     private String email;
 
-    public long getId() {
-        return id;
+    public long getStudentId() {
+        return studentId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setStudentId(long id) {
+        this.studentId = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getStudentFirstName() {
+        return studentFirstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setStudentFirstName(String firstName) {
+        this.studentFirstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getStudentLastName() {
+        return studentLastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setStudentLastName(String lastName) {
+        this.studentLastName = lastName;
     }
 
     public String getEmail() {

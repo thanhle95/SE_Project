@@ -9,9 +9,9 @@ import java.util.List;
 public interface StudentService {
     Student getStudentByEmail(String email);
 
-    Student getStudentById(Long studentId);
+    Student getStudentById(long studentId);
 
-    void deleteById(Long studentId);
+    void deleteById(long studentId);
 
     void save(Student student);
 

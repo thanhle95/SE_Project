@@ -25,7 +25,7 @@ public class BlockServiceImp implements BlockService {
     }
 
     @Override
-    public Block getBlockByBlockID(int blockID) {
+    public Block getBlockByBlockID(long blockID) {
         return blockDAO.findBlockByBlockID(blockID);
     }
 

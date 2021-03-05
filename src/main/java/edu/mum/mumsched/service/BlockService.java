@@ -7,7 +7,7 @@ import java.util.List;
 public interface BlockService {
     public void save(Block block);
 
-    public Block getBlockByBlockID(int blockID);
+    public Block getBlockByBlockID(long blockID);
 
     public Block getBlockByBlockName(String blockName);
 

@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface EntryDao extends CrudRepository<Entry, Long> {
-    @Query("select s from Entry s where s.entryID= :entryID")
-    public Entry findEntryByEntryID(@Param("entryID") int entryID);
+    @Query("select s from Entry s where s.entryId= :entryID")
+    public Entry findEntryByEntryID(@Param("entryID") long entryID);
 
     @Query("select s from Entry s where s.entryName= :entryName")
     public Entry findEntryByEntryName(@Param("entryName") String entryName);

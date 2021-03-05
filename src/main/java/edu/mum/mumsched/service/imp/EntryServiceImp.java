@@ -15,7 +15,6 @@ public class EntryServiceImp implements EntryService {
 
     public void save(Entry entry){
         entryDAO.save(entry);
-        return;
     }
 
     @Override
@@ -24,7 +23,7 @@ public class EntryServiceImp implements EntryService {
     }
 
     @Override
-    public Entry getEntryByEntryID(int entryID){
+    public Entry getEntryByEntryID(long entryID){
         return entryDAO.findEntryByEntryID(entryID);
     }
 

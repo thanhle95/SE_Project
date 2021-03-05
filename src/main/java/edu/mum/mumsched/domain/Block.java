@@ -3,12 +3,14 @@ package edu.mum.mumsched.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Block {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int blockID;
+    private long blockId;
 
     @NotEmpty
     private String blockName;
@@ -17,10 +19,20 @@ public class Block {
     private int FPPNum;
     private int MPPNum;
     private String entryName;
+    private long entryId;
 
-    @JoinColumn(name="entryID",nullable = false)
+    @JoinColumn(name="entryId",nullable = false, insertable=false, updatable=false)
     @ManyToOne(fetch = FetchType.EAGER)
     private Entry entry;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
+    private Set<Course> courseList = new HashSet<>();
+
+    public void addCourse(Course course) {
+        courseList.add(course);
+        course.setBlock(this);
+    }
+
 
     public Entry getEntry() {
         return entry;
@@ -30,12 +42,20 @@ public class Block {
         this.entry = entry;
     }
 
-    public int getBlockID() {
-        return blockID;
+    public long getBlockId() {
+        return blockId;
     }
 
-    public void setBlockID(int blockID) {
-        this.blockID = blockID;
+    public long getEntryId() {
+        return entryId;
+    }
+
+    public void setEntryId(long entryID) {
+        this.entryId = entryID;
+    }
+
+    public void setBlockId(long blockID) {
+        this.blockId = blockID;
     }
 
     public String getBlockName() {

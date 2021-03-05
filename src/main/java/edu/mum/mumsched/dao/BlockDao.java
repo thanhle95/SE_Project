@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface BlockDao extends CrudRepository<Block, Long> {
-    @Query("select s from Block s where s.blockID= :blockID")
-    public Block findBlockByBlockID(@Param("blockID") int blockID);
+    @Query("select s from Block s where s.blockId= :blockID")
+    public Block findBlockByBlockID(@Param("blockID") long blockID);
 
     @Query("select s from Block s where s.blockName= :blockName")
     public Block findBlockByBlockName(@Param("blockName") String blockName);

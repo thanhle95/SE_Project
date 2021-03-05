@@ -1,6 +1,5 @@
 package edu.mum.mumsched.controller;
 
-import edu.mum.mumsched.dao.StudentDao;
 import edu.mum.mumsched.domain.Student;
 import edu.mum.mumsched.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,28 +18,27 @@ import java.util.List;
 public class StudentController {
     @Autowired
     StudentService studentService;
-    StudentDao studentDao;
 
-    @RequestMapping(value="/add", method= RequestMethod.GET)
+    @RequestMapping(value="/student/add", method= RequestMethod.GET)
     public String studentRegForm(@ModelAttribute("newStudent") Student student, Model model){
         model.addAttribute("newStudent", student);
-        return "studentregform";
+        return "studentRegForm";
     }
 
-    @RequestMapping(value="/", method= RequestMethod.GET)
+    @RequestMapping(value="/student/", method= RequestMethod.GET)
     public String index(Model model) {
         List<Student> students = studentService.getStudent();
 
         model.addAttribute("studentlist", students);
 
-        return "studentlist";
+        return "studentList";
     }
 
-    @RequestMapping("/update/{id}")
+    @RequestMapping("/student/update/{id}")
     public String showUpdateForm(@PathVariable("id") long id, @Valid Student student, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            student.setId(id);
-            return "studentupdateform";
+            student.setStudentId(id);
+            return "studentUpdateForm";
         }
 
         studentService.save(student);
@@ -49,14 +47,14 @@ public class StudentController {
 
     }
 
-    @RequestMapping("edit/{id}")
+    @RequestMapping("/student/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Student student = studentService.getStudentById(id);
         model.addAttribute("student", student);
-        return "studentupdateform";
+        return "studentUpdateForm";
     }
 
-    @RequestMapping(value = {"/addnewstudent"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/student/addnewstudent"}, method = RequestMethod.POST)
     public String registerStudent(@ModelAttribute("newStudent") Student student, Model model){
 
         //STUDENT SAVED IN PERSISTENCE
@@ -68,7 +66,7 @@ public class StudentController {
         return "addsuccess";
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/student/delete/{id}", method = RequestMethod.GET)
     public String deleteStudent(@PathVariable("id") Long studentId, Model model) {
         studentService.deleteById(studentId);
         return "redirect:/";
