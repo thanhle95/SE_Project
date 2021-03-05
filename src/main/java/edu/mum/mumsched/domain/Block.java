@@ -33,7 +33,7 @@ public class Block {
         this.entry = entry;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "session")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
     private Set<Session> sessionList = new HashSet<>();
 
     public void addSession(Session session){
