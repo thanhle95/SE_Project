@@ -19,13 +19,18 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
+    @RequestMapping(value="/", method= RequestMethod.GET)
+    public String studentRegForm(){
+        return "index";
+    }
+
     @RequestMapping(value="/student/add", method= RequestMethod.GET)
     public String studentRegForm(@ModelAttribute("newStudent") Student student, Model model){
         model.addAttribute("newStudent", student);
         return "studentRegForm";
     }
 
-    @RequestMapping(value="/student/", method= RequestMethod.GET)
+    @RequestMapping(value="/student", method= RequestMethod.GET)
     public String index(Model model) {
         List<Student> students = studentService.getStudent();
 
