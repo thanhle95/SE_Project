@@ -36,7 +36,7 @@ public class BlockRegController {
         return "addBlockForm";
     }
 
-    @RequestMapping(value = {"/addnewblock"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/block/addnewblock"}, method = RequestMethod.POST)
     public String registerNewBlock(@ModelAttribute("newBlock") Block block, Model model) {
         Entry entry = entryService.getEntryByEntryName(block.getEntryName());
         entry.addBlock(block);

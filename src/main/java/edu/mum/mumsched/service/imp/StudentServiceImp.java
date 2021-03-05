@@ -28,13 +28,13 @@ public class StudentServiceImp implements StudentService {
     }
 
     @Override
-    public Student getStudentById(Long studentId){
+    public Student getStudentById(long studentId){
         return studentDao.findById(studentId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid student Id:" + studentId));
     }
 
     @Override
-    public void deleteById(Long studentId){
+    public void deleteById(long studentId){
         studentDao.deleteById(studentId);
     }
 

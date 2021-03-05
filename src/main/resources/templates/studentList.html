@@ -19,11 +19,11 @@
                     <th>Actions</th>
                 </tr>
                 <tr th:each = "student : ${studentlist}">
-                    <td th:text="${student.firstName} + ' ' + ${student.lastName}"></td>
+                    <td th:text="${student.studentFirstName} + ' ' + ${student.studentLastName}"></td>
                     <td th:text="${student.email}"></td>
                     <td>
-                        <a th:href="@{/edit/{id}(id=${student.id})}" class="btn btn-success">Update</a>
-                        <a th:href="@{/delete/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
+                        <a th:href="@{/edit/{id}(id=${student.studentId})}" class="btn btn-success">Update</a>
+                        <a th:href="@{/delete/{id}(id=${student.studentId})}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             </table>

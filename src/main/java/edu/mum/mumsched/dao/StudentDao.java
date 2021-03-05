@@ -10,13 +10,13 @@ import java.util.List;
 
 @Repository
 public interface StudentDao extends CrudRepository<Student, Long> {
-    @Query("select s from Student s where s.id= :id")
+    @Query("select s from Student s where s.studentId= :id")
     public Student findStudentById(@Param("id") Long studentId);
 
     @Query("select s from Student s where s.email= :email")
     public Student findStudentByEmail(@Param("email") String studentEmail);
 
-    @Query("delete from Student s where s.id= :id")
+    @Query("delete from Student s where s.studentId= :id")
     public void removeById(@Param("id") Long studentId);
 
 }

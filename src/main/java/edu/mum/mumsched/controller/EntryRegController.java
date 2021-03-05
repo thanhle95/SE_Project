@@ -27,7 +27,7 @@ public class EntryRegController {
         return "addEntryForm";
     }
 
-    @RequestMapping(value = {"/addnewentry"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/entry/addnewentry"}, method = RequestMethod.POST)
     public String registerNewEntry(@ModelAttribute("newEntry") Entry entry, Model model) {
         entryService.save(entry);
         return "redirect:/entry";

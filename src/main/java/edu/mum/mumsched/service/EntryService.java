@@ -7,7 +7,7 @@ import java.util.List;
 public interface EntryService {
     public void save(Entry entry);
 
-    public Entry getEntryByEntryID(int entryID);
+    public Entry getEntryByEntryID(long entryID);
 
     public Entry getEntryByEntryName(String entryName);
 

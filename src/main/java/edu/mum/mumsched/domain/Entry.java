@@ -10,7 +10,7 @@ import java.util.Set;
 public class Entry {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int entryID;
+    private long entryId;
     @NotEmpty
     private String entryName;
     private int FPPNum;
@@ -26,12 +26,12 @@ public class Entry {
         block.setEntry(this);
     }
 
-    public int getEntryID() {
-        return entryID;
+    public long getEntryId() {
+        return entryId;
     }
 
-    public void setEntryID(int entryID) {
-        this.entryID = entryID;
+    public void setEntryId(int entryID) {
+        this.entryId = entryID;
     }
 
     public String getEntryName() {
