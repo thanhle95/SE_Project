@@ -1,0 +1,13 @@
+div.header_banner {
+    background-image: url("/images/newcompro-logo.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 130px;
+}
+
+div.header_menu {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
