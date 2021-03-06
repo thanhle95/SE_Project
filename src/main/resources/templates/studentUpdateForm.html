@@ -16,17 +16,17 @@
     <div class="card">
         <div class="card-body">
             <div class="col-md-8">
-                <form action="#" th:action="@{/update/{id}(id=${student.studentId})}" th:object="${student}" method="post">
+                <form action="#" th:action="@{/student/update/{id}(id=${student.studentId})}" th:object="${student}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="firstName" class="col-form-label">First Name</label>
-                            <input type="text" th:field="*{studentFirstName}" class="form-control" id="firstName" placeholder="firstName">
-                            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{studentFirstName}" class="text-danger"></span>
+                            <label for="studentFirstName" class="col-form-label">First Name</label>
+                            <input type="text" th:field="*{studentFirstName}" class="form-control" id="studentFirstName" placeholder="studentFirstName">
+                            <span th:if="${#fields.hasErrors('studentFirstName')}" th:errors="*{studentFirstName}" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="lastName" class="col-form-label">Last Name</label>
-                            <input type="text" th:field="*{studentLastName}" class="form-control" id="lastName" placeholder="lastName">
-                            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{studentLastName}" class="text-danger"></span>
+                            <label for="studentLastName" class="col-form-label">Last Name</label>
+                            <input type="text" th:field="*{studentLastName}" class="form-control" id="studentLastName" placeholder="studentLastName">
+                            <span th:if="${#fields.hasErrors('studentLastName')}" th:errors="*{studentLastName}" class="text-danger"></span>
                         </div>
                         <div class="form-group col-md-8">
                             <label for="email" class="col-form-label">Email</label>

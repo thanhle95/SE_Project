@@ -41,11 +41,8 @@ public class StudentController {
 
     @RequestMapping("/student/update/{id}")
     public String showUpdateForm(@PathVariable("id") long id, @Valid Student student, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            student.setStudentId(id);
-            return "studentUpdateForm";
-        }
 
+        student.setStudentId(id);
         studentService.save(student);
         model.addAttribute("students", studentService.getStudent());
         return "redirect:/student";
