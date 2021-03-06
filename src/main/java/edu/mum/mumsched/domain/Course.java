@@ -13,9 +13,7 @@ public class Course {
     @NotEmpty
     private String courseCode;
     private String courseName;
-    
-    @ElementCollection
-    private List<Long> preCourseId;
+    private String preCourseId;
 
     @OneToOne(mappedBy = "course")
     private Session session;
@@ -26,10 +24,6 @@ public class Course {
 
     public void setSession(Session session) {
         this.session = session;
-    }
-
-    public void addPreCourseId(Course course) {
-        preCourseId.add(courseId);
     }
 
     public long getCourseId() {
@@ -56,11 +50,11 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public List<Long> getPreCourseId() {
+    public String getPreCourseId() {
         return preCourseId;
     }
 
-    public void setPreCourseId(List<Long> preCourseId) {
+    public void setPreCourseId(String preCourseId) {
         this.preCourseId = preCourseId;
     }
 }

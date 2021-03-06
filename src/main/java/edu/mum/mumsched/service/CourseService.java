@@ -11,5 +11,7 @@ public interface CourseService {
 
     public Course getCourseByCourseName(String courseName);
 
+    void deleteById(long studentId);
+
     public List<Course> getAllCourse();
 }

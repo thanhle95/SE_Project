@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Course List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+            integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+            crossorigin="anonymous"
+    />
+</head>
+<body>
+<h1>Students</h1>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Name</th>
+                    <th>Prerequisite Course Code</th>
+                    <th>Action</th>
+
+                </tr>
+                <tr th:each="course : ${courseList}">
+                    <td th:text="${course.courseCode}"></td>
+                    <td th:text="${course.courseName}"></td>
+                    <td th:text="${course.preCourseId}"></td>
+                    <td>
+                        <a
+                                th:href="@{/course/edit/{id}(id=${course.courseId})}"
+                                class="btn btn-success"
+                        >Update</a
+                        >
+                        <a
+                                th:href="@{/course/delete/{id}(id=${course.courseId})}"
+                                class="btn btn-danger"
+                        >Delete</a
+                        >
+                    </td>
+                </tr>
+            </table>
+            <a href="/course/add" class="btn btn-success">Add Course</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

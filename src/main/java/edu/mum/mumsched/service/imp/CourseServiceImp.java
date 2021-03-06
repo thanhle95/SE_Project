@@ -32,4 +32,9 @@ public class CourseServiceImp implements CourseService {
     public List<Course> getAllCourse() {
         return courseDao.getAllCourse();
     }
+
+    @Override
+    public void deleteById(long courseId){
+        courseDao.deleteById(courseId);
+    }
 }
