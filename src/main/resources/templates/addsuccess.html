@@ -5,17 +5,18 @@
     <title>Success</title>
 </head>
 <body>
+<form   th:action="@{/student}" th:object="${newStudent}" method="get">
     <div>
         <h3>
-            <span th:text="${student.studentFirstName}"></span>
-            saved with id: <span th:text="${student.studentId}"></span>
+            <span th:text="*{studentFirstName}"></span>
+            saved with id: <span th:text="*{studentId}"></span>
             successfully!
         </h3>
     </div>
     <div>
-        <form method="get" action="/">
-            <button type="submit">Add Another Student</button>
-        </form>
+        <input type="submit" class="btn btn-success" value="Back To Student List">
     </div>
+</form>
+
 </body>
 </html>

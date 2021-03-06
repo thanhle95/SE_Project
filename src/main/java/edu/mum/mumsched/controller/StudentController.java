@@ -66,7 +66,7 @@ public class StudentController {
         studentService.save(student);
 
         //GET STUDENT FROM PERSISTENCE
-        model.addAttribute(studentService.getStudentByEmail(student.getEmail()));
+        model.addAttribute("newStudent",studentService.getStudentByEmail(student.getEmail()));
 
         return "addsuccess";
     }
