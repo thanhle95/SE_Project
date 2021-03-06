@@ -62,10 +62,7 @@ public class StudentController {
         //STUDENT SAVED IN PERSISTENCE
         studentService.save(student);
 
-        //GET STUDENT FROM PERSISTENCE
-        model.addAttribute("newStudent",studentService.getStudentByEmail(student.getEmail()));
-
-        return "addsuccess";
+        return "redirect:/student";
     }
 
     @RequestMapping(value = "/student/delete/{id}", method = RequestMethod.GET)
