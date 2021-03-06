@@ -48,7 +48,7 @@ public class StudentController {
 
         studentService.save(student);
         model.addAttribute("students", studentService.getStudent());
-        return "redirect:/";
+        return "redirect:/student";
 
     }
 
@@ -74,7 +74,7 @@ public class StudentController {
     @RequestMapping(value = "/student/delete/{id}", method = RequestMethod.GET)
     public String deleteStudent(@PathVariable("id") Long studentId, Model model) {
         studentService.deleteById(studentId);
-        return "redirect:/";
+        return "redirect:/student";
     }
 
 }
