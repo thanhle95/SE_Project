@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Studentlist</title>
+    <title>Faculty List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -12,7 +12,7 @@
 <body>
 <div th:replace="admin_header :: header"></div>
 <div th:replace="admin_header :: menu"></div>
-<h1>Students</h1>
+<h1>Faculties</h1>
 <div class="container my-2">
     <div class="card">
         <div class="card-body">
@@ -20,31 +20,29 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Faculty</th>
+                    <th>Num of Student</th>
                     <th>Actions</th>
                 </tr>
-                <tr th:each="student : ${studentlist}">
-                    <td
-                            th:text="${student.studentFirstName} + ' ' + ${student.studentLastName}"
-                    ></td>
-                    <td th:text="${student.email}"></td>
-                    <td th:text="${student.facultyName}"></td>
-
+                <tr th:each="faculty : ${facultyList}">
+                    <td th:text="${faculty.facultyName}"></td>
+                    <td th:text="${faculty.email}"></td>
+                    <td th:text="${faculty.getNumOfStudent()}"></td>
+                </td>
                     <td>
                         <a
-                                th:href="@{/student/edit/{id}(id=${student.studentId})}"
+                                th:href="@{/faculty/edit/{id}(id=${faculty.facultyId})}"
                                 class="btn btn-success"
                         >Update</a
                         >
                         <a
-                                th:href="@{/student/delete/{id}(id=${student.studentId})}"
+                                th:href="@{/faculty/delete/{id}(id=${faculty.facultyId})}"
                                 class="btn btn-danger"
                         >Delete</a
                         >
                     </td>
                 </tr>
             </table>
-            <a href="/student/add" class="btn btn-success">Add Student</a>
+            <a href="/faculty/add" class="btn btn-success">Add Faculty</a>
         </div>
     </div>
 </div>
