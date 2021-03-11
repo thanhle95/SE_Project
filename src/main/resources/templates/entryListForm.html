@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Entry list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="admin_header :: header"></div>
+<div th:replace="admin_header :: menu"></div>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+<!--                    <th></th>-->
+                    <th>Entry Name</th>
+                    <th>MPP Num</th>
+                    <th>FPP Num</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
+                </tr>
+                <tr th:each="entry : ${entryList}">
+<!--                    <td th: text = "${# ids.seq ('')}"></td>-->
+                    <td th:text="${entry.entryName}"></td>
+                    <td th:text="${entry.MPPNum}"></td>
+                    <td th:text="${entry.FPPNum}"></td>
+                    <td th:text="${entry.startDate}"></td>
+                    <td th:text="${entry.endDate}"></td>
+                    <td>
+                        <a
+                                th:href="@{/entry/edit/{id}(id=${entry.entryId})}"
+                                class="btn btn-success"
+                        >Update</a
+                        >
+                        <a
+                                th:href="@{/entry/delete/{id}(id=${entry.entryId})}"
+                                class="btn btn-danger"
+                        >Delete</a
+                        >
+                    </td>
+                </tr>
+            </table>
+            <a href="/entry/add" class="btn btn-success">Add Entry</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

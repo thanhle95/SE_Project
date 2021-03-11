@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Entry</title>
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="admin_header :: header"></div>
+<div th:replace="admin_header :: menu"></div>
+<div class="container my-5">
+    <div class="card">
+        <div class="card-body">
+            <form action="#" th:action="@{/entry/update/{id}(id=${editEntry.entryId})}" th:object="${editEntry}" method="post">
+                <fieldset>
+                    <legend>Update Entry</legend>
+                    <p>
+                        <label for="entryName">Entry Name :</label>
+                        <input id="entryName" class="form-control" type="text" th:field="*{entryName}"/>
+                    </p>
+                    <p>
+                        <label for="FPPNum">FPP Number : </label>
+                        <input id="FPPNum" class="form-control" type="text" th:field="*{FPPNum}"/>
+                    </p>
+
+                    <p>
+                        <label for="MPPNum">MPP Number : </label>
+                        <input id="MPPNum" class="form-control" type="text" th:field="*{MPPNum}"/>
+                    </p>
+
+                    <p>
+                        <label for="startDate">Start Date : </label>
+                        <input id="startDate" class="form-control" type="text" th:field="*{startDate}"/>
+                    </p>
+                    <p>
+                        <label for="endDate">End Date : </label>
+                        <input id="endDate" class="form-control" type="text" th:field="*{endDate}"/>
+                    </p>
+                    <p>
+                        <input id="btnUpdate" class="btn btn-success" type="submit" value="Update Entry"/>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

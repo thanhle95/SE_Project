@@ -12,4 +12,6 @@ public interface BlockService {
     public Block getBlockByBlockName(String blockName);
 
     public List<Block> getAllBlock();
+
+    public void deleteBlockByBlockID(long blockID);
 }
