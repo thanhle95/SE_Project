@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Update User</title>
+    <title>Update Facutly</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -17,34 +17,22 @@
 <div th:replace="admin_header :: header"></div>
 <div th:replace="admin_header :: menu"></div>
 <div class="container my-5">
-    <h3> Update Student</h3>
+    <h3> Update Faculty</h3>
     <div class="card">
         <div class="card-body">
             <div class="col-md-8">
-                <form action="#" th:action="@{/student/update/{id}(id=${student.studentId})}" th:object="${student}" method="post">
+                <form action="#" th:action="@{/faculty/update/{id}(id=${faculty.facultyId})}" th:object="${faculty}" method="post">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="studentFirstName" class="col-form-label">First Name</label>
-                            <input type="text" th:field="*{studentFirstName}" class="form-control" id="studentFirstName" placeholder="studentFirstName">
-                            <span th:if="${#fields.hasErrors('studentFirstName')}" th:errors="*{studentFirstName}" class="text-danger"></span>
+                            <label for="facultyName" class="col-form-label">Name</label>
+                            <input type="text" th:field="*{facultyName}" class="form-control" id="facultyName" placeholder="facultyName">
+                            <span th:if="${#fields.hasErrors('facultyName')}" th:errors="*{facultyName}" class="text-danger"></span>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="studentLastName" class="col-form-label">Last Name</label>
-                            <input type="text" th:field="*{studentLastName}" class="form-control" id="studentLastName" placeholder="studentLastName">
-                            <span th:if="${#fields.hasErrors('studentLastName')}" th:errors="*{studentLastName}" class="text-danger"></span>
-                        </div>
+
                         <div class="form-group col-md-8">
                             <label for="email" class="col-form-label">Email</label>
                             <input type="text" th:field="*{email}" class="form-control" id="email" placeholder="Email">
                             <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-                        </div>
-                        <div>
-                            <label for="facultyNameList" class="form-label">Select Faculty: </label>
-                            <select id="facultyNameList" class="form-select" aria-label="Default select example"
-                                    th:field="*{facultyName}">
-                                <option th:each="facultyName : ${facultyNameList}" th:value="${facultyName}"
-                                        th:text="${facultyName}"></option>
-                            </select>
                         </div>
 
                         <div class="form-group col-md-8">
