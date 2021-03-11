@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Block</title>
+
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="admin_header :: header"></div>
+<div th:replace="admin_header :: menu"></div>
+<div class="container my-5">
+    <div class="card">
+        <div class="card-body">
+            <form action="#" th:action="@{/block/update/{id}(id=${editBlock.blockId})}" th:object="${editBlock}" method="post">
+                <fieldset>
+                    <legend>Update Block</legend>
+                    <p>
+                        <label for="entryList" class="form-label">Select Entry: </label>
+                        <select id="entryList" class="form-select" aria-label="Default select example"
+                                th:field="*{entryName}">
+                            <option th:each="entryName : ${entryNameList}" th:value="${entryName}"
+                                    th:text="${entryName}"></option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="blockName" class="form-label">Block Name : </label>
+                        <input id="blockName" class="form-control" type="text" th:field="*{blockName}"/>
+                    </p>
+
+                    <p>
+                        <label for="FPPNum" class="form-label">FPP Number : </label>
+                        <input id="FPPNum" class="form-control" type="text" th:field="*{FPPNum}"/>
+                    </p>
+
+                    <p>
+                        <label for="MPPNum" class="form-label">MPP Number : </label>
+                        <input id="MPPNum" class="form-control" type="text" th:field="*{MPPNum}"/>
+                    </p>
+
+                    <p>
+                        <label for="startDate" class="form-label">Start Date : </label>
+                        <input id="startDate" class="form-control" type="text" th:field="*{startDate}"/>
+                    </p>
+                    <p>
+                        <label for="endDate" class="form-label">End Date : </label>
+                        <input id="endDate" class="form-control" type="text" th:field="*{endDate}"/>
+                    </p>
+                    <p>
+                        <input id="btnUpdate" class="btn btn-success" type="submit" value="Update Block"/>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

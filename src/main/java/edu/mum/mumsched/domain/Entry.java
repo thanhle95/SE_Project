@@ -1,7 +1,10 @@
 package edu.mum.mumsched.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,10 +19,13 @@ public class Entry {
     private String entryName;
     private int FPPNum;
     private int MPPNum;
-    private Date startDate;
-    private Date endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endDate;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "entry")
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "entry")
+    @OneToMany(mappedBy = "entry")
     private Set<Block> blockList = new HashSet<>();
 
     public void addBlock(Block block) {
@@ -27,11 +33,15 @@ public class Entry {
         block.setEntry(this);
     }
 
+    public void removeBlock(Block block) {
+        blockList.remove(block);
+    }
+
     public long getEntryId() {
         return entryId;
     }
 
-    public void setEntryId(int entryID) {
+    public void setEntryId(long entryID) {
         this.entryId = entryID;
     }
 
@@ -59,19 +69,19 @@ public class Entry {
         this.MPPNum = MPPNum;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

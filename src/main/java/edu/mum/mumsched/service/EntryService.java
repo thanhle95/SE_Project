@@ -12,4 +12,6 @@ public interface EntryService {
     public Entry getEntryByEntryName(String entryName);
 
     public List<Entry> getAllEntry();
+
+    public void deleteEntryByEntryID(long entryID);
 }

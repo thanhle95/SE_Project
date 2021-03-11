@@ -31,4 +31,7 @@ public class EntryServiceImp implements EntryService {
     public List<Entry> getAllEntry() {
         return entryDAO.getAllEntry();
     }
+
+    @Override
+    public void deleteEntryByEntryID(long entryID) { entryDAO.deleteEntryByEntryID(entryID);}
 }

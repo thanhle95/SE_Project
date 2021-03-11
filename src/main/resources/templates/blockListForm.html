@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Block list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="admin_header :: header"></div>
+<div th:replace="admin_header :: menu"></div>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <!--                    <th></th>-->
+                    <th>Block Name</th>
+                    <th>Entry Name</th>
+                    <th>MPP Num</th>
+                    <th>FPP Num</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
+                </tr>
+                <tr th:each="block : ${blockList}">
+                    <!--                    <td th: text = "${# ids.seq ('')}"></td>-->
+                    <td th:text="${block.blockName}"></td>
+                    <td th:text="${block.entryName}"></td>
+                    <td th:text="${block.MPPNum}"></td>
+                    <td th:text="${block.FPPNum}"></td>
+                    <td th:text="${block.startDate}"></td>
+                    <td th:text="${block.endDate}"></td>
+                    <td>
+                        <a
+                                th:href="@{/block/edit/{id}(id=${block.blockId})}"
+                                class="btn btn-success"
+                        >Update</a
+                        >
+                        <a
+                                th:href="@{/block/delete/{id}(id=${block.blockId})}"
+                                class="btn btn-danger"
+                        >Delete</a
+                        >
+                    </td>
+                </tr>
+            </table>
+            <a href="/block/add" class="btn btn-success">Add Block</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
