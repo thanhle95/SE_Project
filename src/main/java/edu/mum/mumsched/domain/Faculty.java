@@ -15,27 +15,6 @@ public class Faculty {
     private String facultyName;
     private String email;
 
-    @OneToMany(mappedBy = "faculty")
-    private Set<Student> studentList = new HashSet<>();
-
-    public void addStudent(Student student) {
-        studentList.add(student);
-        student.setFaculty(this);
-    }
-
-    public void removeStudent(Student student){
-        studentList.remove(student);
-        student.setFaculty(null);
-    }
-
-    public Set<Student> getStudentList() {
-        return studentList;
-    }
-
-    public void setStudentList(Set<Student> studentList) {
-        this.studentList = studentList;
-    }
-
     public long getFacultyId() {
         return facultyId;
     }
@@ -60,7 +39,4 @@ public class Faculty {
         this.email = email;
     }
 
-    public Integer getNumOfStudent(){
-        return this.studentList.size();
-    }
 }

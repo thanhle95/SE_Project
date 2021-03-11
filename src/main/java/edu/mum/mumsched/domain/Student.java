@@ -12,21 +12,7 @@ public class Student {
     @NotEmpty
     private String studentFirstName;
     private String studentLastName;
-    private String facultyName;
     private String email;
-
-    @JoinColumn(name="facultyId",nullable = false)
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Faculty faculty;
-
-    public Faculty getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
-
 
     public long getStudentId() {
         return studentId;
@@ -60,11 +46,4 @@ public class Student {
         this.email = email;
     }
 
-    public String getFacultyName() {
-        return facultyName;
-    }
-
-    public void setFacultyName(String facultyName) {
-        this.facultyName = facultyName;
-    }
 }

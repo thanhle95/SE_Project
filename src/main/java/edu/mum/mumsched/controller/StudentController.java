@@ -26,18 +26,14 @@ public class StudentController {
     FacultyService facultyService;
 
     @RequestMapping(value="/", method= RequestMethod.GET)
-    public String studentRegForm(){
+    public String index(){
         return "index";
     }
 
     @RequestMapping(value="/student/add", method= RequestMethod.GET)
     public String studentRegForm(@ModelAttribute("newStudent") Student student, Model model){
-        List<String> facultyNameList = new ArrayList<>();
-        for(Faculty faculty : facultyService.getFaculty()) {
-            facultyNameList.add(faculty.getFacultyName());
-        }
+
         model.addAttribute("newStudent", student);
-        model.addAttribute("facultyNameList",facultyNameList);
 
         return "studentRegForm";
     }
@@ -53,15 +49,10 @@ public class StudentController {
 
     @RequestMapping("/student/update/{id}")
     public String updateStudent(@PathVariable("id") long id, @Valid Student student, Model model) {
-        String facultyName = studentService.getStudentById(id).getFacultyName();
-        if(!student.getFacultyName().equals(facultyName)){
-            Faculty old_faculty = facultyService.getFacultyByFacultyName(facultyName);
-            old_faculty.removeStudent(studentService.getStudentById(id));
-        }
+
 
         student.setStudentId(id);
-        Faculty faculty = facultyService.getFacultyByFacultyName(student.getFacultyName());
-        faculty.addStudent(student);
+
         studentService.save(student);
 
         model.addAttribute("students", studentService.getStudent());
@@ -72,19 +63,14 @@ public class StudentController {
     @RequestMapping("/student/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Student student = studentService.getStudentById(id);
-        List<String> facultyNameList = new ArrayList<>();
-        for(Faculty faculty : facultyService.getFaculty()) {
-            facultyNameList.add(faculty.getFacultyName());
-        }
-        model.addAttribute("facultyNameList",facultyNameList);
+
         model.addAttribute("student", student);
         return "studentUpdateForm";
     }
 
     @RequestMapping(value = {"/student/addnewstudent"}, method = RequestMethod.POST)
     public String registerStudent(@ModelAttribute("newStudent") Student student){
-        Faculty faculty = facultyService.getFacultyByFacultyName(student.getFacultyName());
-        faculty.addStudent(student);
+
         //STUDENT SAVED IN PERSISTENCE
         studentService.save(student);
 

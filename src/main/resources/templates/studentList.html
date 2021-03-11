@@ -20,7 +20,6 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Faculty</th>
                     <th>Actions</th>
                 </tr>
                 <tr th:each="student : ${studentlist}">
@@ -28,8 +27,6 @@
                             th:text="${student.studentFirstName} + ' ' + ${student.studentLastName}"
                     ></td>
                     <td th:text="${student.email}"></td>
-                    <td th:text="${student.facultyName}"></td>
-
                     <td>
                         <a
                                 th:href="@{/student/edit/{id}(id=${student.studentId})}"
