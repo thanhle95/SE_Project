@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class EntryRegController {
+public class EntryController {
     @Autowired
     EntryService entryService;
 
@@ -25,13 +25,13 @@ public class EntryRegController {
         System.out.println(entryList);
         model.addAttribute("entryList",entryList);
         model.addAttribute("newEntry",entry);
-        return "entryListForm";
+        return "admin/entryListForm";
     }
 
     @RequestMapping(value = "/entry/add", method = RequestMethod.GET)
     public String entryAddForm(@ModelAttribute("newEntry") Entry entry, Model model){
         model.addAttribute("newEntry",entry);
-        return "entryAddForm";
+        return "admin/entryAddForm";
     }
 
     @RequestMapping(value = {"entry/addnewentry"}, method = RequestMethod.POST)
@@ -51,7 +51,7 @@ public class EntryRegController {
     public String entryEditForm(@PathVariable("id") long id, Model model) {
         Entry entry = entryService.getEntryByEntryID(id);
         model.addAttribute("editEntry",entry);
-        return "entryUpdateForm";
+        return "admin/entryUpdateForm";
     }
 
     @RequestMapping(value = {"entry/delete/{id}"}, method = RequestMethod.GET)

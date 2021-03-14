@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class BlockRegController {
+public class BlockController {
     @Autowired
     BlockService blockService;
 
@@ -34,7 +34,7 @@ public class BlockRegController {
         model.addAttribute("entryNameList",entryNameList);
         model.addAttribute("blockList",blockList);
         model.addAttribute("newBlock",block);
-        return "blockListForm";
+        return "admin/blockListForm";
     }
 
     @RequestMapping(value = "/block/add", method = RequestMethod.GET)
@@ -48,7 +48,7 @@ public class BlockRegController {
         model.addAttribute("entryNameList",entryNameList);
         model.addAttribute("blockList",blockList);
         model.addAttribute("newBlock",block);
-        return "blockAddForm";
+        return "admin/blockAddForm";
     }
 
     @RequestMapping(value = {"/block/addnewblock"}, method = RequestMethod.POST)
@@ -69,7 +69,7 @@ public class BlockRegController {
         }
         model.addAttribute("editBlock",block);
         model.addAttribute("entryNameList",entryNameList);
-        return "blockUpdateForm";
+        return "admin/blockUpdateForm";
     }
 
     @RequestMapping(value = {"/block/update/{id}"}, method = RequestMethod.POST)

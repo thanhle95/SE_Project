@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update Block</title>
+    <title>Add Block</title>
 
     <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -11,14 +11,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:replace="admin_header :: header"></div>
-<div th:replace="admin_header :: menu"></div>
+<div th:replace="common/admin_header :: header"></div>
+<div th:replace="common/admin_header :: menu"></div>
 <div class="container my-5">
     <div class="card">
         <div class="card-body">
-            <form action="#" th:action="@{/block/update/{id}(id=${editBlock.blockId})}" th:object="${editBlock}" method="post">
+            <form action="#" th:action="@{/block/addnewblock}" th:object="${newBlock}" method="post">
                 <fieldset>
-                    <legend>Update Block</legend>
+                    <legend>Add New Block</legend>
                     <p>
                         <label for="entryList" class="form-label">Select Entry: </label>
                         <select id="entryList" class="form-select" aria-label="Default select example"
@@ -51,7 +51,7 @@
                         <input id="endDate" class="form-control" type="text" th:field="*{endDate}"/>
                     </p>
                     <p>
-                        <input id="btnUpdate" class="btn btn-success" type="submit" value="Update Block"/>
+                        <input id="btnAdd" class="btn btn-success" type="submit" value="Add New Block"/>
                     </p>
                 </fieldset>
             </form>

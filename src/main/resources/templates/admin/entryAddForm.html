@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update Entry</title>
+    <title>Add Entry</title>
     <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -10,14 +10,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div th:replace="admin_header :: header"></div>
-<div th:replace="admin_header :: menu"></div>
+<div th:replace="common/admin_header :: header"></div>
+<div th:replace="common/admin_header :: menu"></div>
 <div class="container my-5">
     <div class="card">
         <div class="card-body">
-            <form action="#" th:action="@{/entry/update/{id}(id=${editEntry.entryId})}" th:object="${editEntry}" method="post">
+            <form action="#" th:action="@{/entry/addnewentry}" th:object="${newEntry}" method="post">
                 <fieldset>
-                    <legend>Update Entry</legend>
+                    <legend>Add New Entry</legend>
                     <p>
                         <label for="entryName">Entry Name :</label>
                         <input id="entryName" class="form-control" type="text" th:field="*{entryName}"/>
@@ -41,7 +41,7 @@
                         <input id="endDate" class="form-control" type="text" th:field="*{endDate}"/>
                     </p>
                     <p>
-                        <input id="btnUpdate" class="btn btn-success" type="submit" value="Update Entry"/>
+                        <input id="btnAdd" class="btn btn-success" type="submit" value="Add New Entry"/>
                     </p>
                 </fieldset>
             </form>
