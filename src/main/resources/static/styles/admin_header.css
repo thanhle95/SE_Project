@@ -151,7 +151,7 @@ a:-webkit-any-link {
     height: 100%;
     width: 200px;
     background-color: #fff;
-    position: fixed!important;
+    /*position: fixed!important;*/
     z-index: 1;
     overflow: auto;
 }
@@ -231,4 +231,8 @@ nav {
     content: "";
     display: table;
     clear: both;
+}
+
+div.container {
+    margin-left: 250px;
 }
