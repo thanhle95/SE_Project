@@ -2,12 +2,10 @@ package edu.mum.mumsched.controller;
 
 
 import edu.mum.mumsched.domain.Course;
-import edu.mum.mumsched.domain.Student;
 import edu.mum.mumsched.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +24,7 @@ public class CourseController {
     public String courseList(Model model) {
         List<Course> courseList = courseService.getAllCourse();
         model.addAttribute("courseList", courseList);
-        return "courseList";
+        return "admin/courseList";
     }
 
     // Update Course Detail
@@ -43,14 +41,14 @@ public class CourseController {
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Course course = courseService.getCourseByCourseID(id);
         model.addAttribute("course", course);
-        return "courseUpdateForm";
+        return "admin/courseUpdateForm";
     }
 
     // Add more course
     @RequestMapping(value = "/course/add", method = RequestMethod.GET)
     public String courseRegForm(@ModelAttribute("newCourse")Course course, Model model){
         model.addAttribute("newCourse", course);
-        return "addCourseForm";
+        return "admin/courseAddForm";
     }
 
     @RequestMapping(value = {"/course/addnewcourse"}, method = RequestMethod.POST)

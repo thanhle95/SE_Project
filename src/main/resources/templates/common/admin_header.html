@@ -6,22 +6,79 @@
     <link rel="stylesheet" href="/styles/admin_header.css">
 </head>
 <body>
-<div class="header_banner" th:fragment="header">
-</div>
-<div class="header_menu" th:fragment="menu">
-    <div class="container">
-        <h3>Computer Science Student page</h3>
-        <a href="/" class="btn btn-primary">Home</a>
-        <a href="/student" class="btn btn-info">Student</a>
-        <a href="/entry" class="btn btn-secondary">Entry</a>
-        <a href="/block" class="btn btn-secondary">Block</a>
-        <a href="/course" class="btn btn-warning">Course</a>
-        <a href="/faculty" class="btn btn-success">Faculty</a>
-        <a href="/schedule" class="btn btn-danger">Schedule</a>
-        <a href="/setting" class="btn btn-dark">Setting</a>
-<!--        <button type="button" class="btn btn-light">Light</button>-->
-<!--        <button type="button" class="btn btn-link">Link</button>-->
+<div class="header" th:fragment="header">
+    <div class="header_banner" th:fragment="header_banner"></div>
+<!--    <div class="header_menu" th:fragment="menu"></div>-->
+    <div class="w3-bar w3-theme w3-card-2 w3-wide notranslate">
+        <a class="w3-bar-item w3-button w3-hover-white w3-padding-16 hidesm" href="javascript:void(0)" onclick="w3_open()"><i class="fa"></i></a>
+        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/" id="navbtn_home">HOME <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
+        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/faculty" id="navbtn_faculty">FACULTY <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
+        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/student" id="navbtn_student">STUDENT <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
+        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/block" id="navbtn_admin">ADMIN <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
+        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="navbtn_course">COURSES <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
+        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="navbtn_schedule">SCHEDULE</a>
+        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="cert_contact">CONTACT</a>
+
+        <div class="w3-right">
+            <a class="w3-bar-item w3-button w3-hover-white w3-padding-16 w3-right" href="javascript:void(0)" onclick="open_search(this)" title="Search W3Schools"><i class="fa"></i></a>
+            <a class="w3-bar-item w3-button w3-hover-white w3-padding-16 w3-right" href="javascript:void(0)" onclick="open_translate(this)" title="Translate W3Schools"><i class="fa"></i></a>
+            <a class="w3-bar-item w3-button w3-hover-white w3-padding-16 w3-right w3-hide-small" href="javascript:void(0)" onclick="changecodetheme(this)" title="Toggle Dark Code"><i class="fa"></i></a>
+            <a class="w3-bar-item w3-button w3-hover-white w3-padding-16 w3-right topnav-some w3-hide" target="_blank" href="https://www.linkedin.com/company/w3schools.com/" title="W3Schools on LinkedIn"><i class="fa"></i></a>
+            <a class="w3-bar-item w3-button w3-hover-white w3-padding-16 w3-right topnav-some w3-hide" target="_blank" href="https://www.instagram.com/w3schools.com_official/" title="W3Schools on Instagram"><i class="fa"></i></a>
+            <a class="w3-bar-item w3-button w3-hover-white w3-padding-16 w3-right topnav-some w3-hide" target="_blank" href="https://www.facebook.com/w3schoolscom/" title="W3Schools on Facebook"><i class="fa"></i></a>
+
+        </div>
     </div>
+<!--    <h3>Computer Science Student page</h3>-->
 </div>
+<!--<div class="header_navi" th:fragment="navi">-->
+<nav class="w3-sidebar w3-collapse w3-white w3-card-2" id="mySidenavHome" th:fragment="navi">
+    <div class="w3-bar-block">
+        <div class="w3-container">
+            <h4 class="w3-margin-top">Home</h4>
+        </div>
+    </div>
+</nav>
+
+<nav class="w3-sidebar w3-collapse w3-white w3-card-2" id="mySidenavEntry" th:fragment="navi_admin">
+    <div class="w3-bar-block">
+        <div class="w3-container">
+            <h4 class="w3-margin-top">Entry</h4>
+        </div>
+        <a class="w3-bar-item w3-button" href="/entry">Entry List</a>
+        <a class="w3-bar-item w3-button" href="/entry/add">Entry Add</a>
+        <a class="w3-bar-item w3-button" href="/entry/search">Entry Search</a>
+
+        <div class="w3-container">
+            <h4 class="w3-margin-top">Block</h4>
+        </div>
+        <a class="w3-bar-item w3-button" href="/block">Block List</a>
+        <a class="w3-bar-item w3-button" href="/block/add">Block Add</a>
+        <a class="w3-bar-item w3-button" href="/block/search">Block Search</a>
+
+        <div class="w3-container">
+            <h4 class="w3-margin-top">Course</h4>
+        </div>
+        <a class="w3-bar-item w3-button" href="/course">Course List</a>
+        <a class="w3-bar-item w3-button" href="/course/add">Course Add</a>
+        <a class="w3-bar-item w3-button" href="/course/search">Course Search</a>
+
+        <div class="w3-container">
+            <h4 class="w3-margin-top">Section</h4>
+        </div>
+        <a class="w3-bar-item w3-button" href="/section">Section List</a>
+        <a class="w3-bar-item w3-button" href="/section/add">Section Add</a>
+        <a class="w3-bar-item w3-button" href="/section/search">Section Search</a>
+
+        <div class="w3-container">
+            <h4 class="w3-margin-top">Schedule</h4>
+        </div>
+        <a class="w3-bar-item w3-button" href="/schedule">Schedule List</a>
+        <a class="w3-bar-item w3-button" href="/schedule/generate">Schedule Add</a>
+        <a class="w3-bar-item w3-button" href="/schedule/search">Schedule Search</a>
+
+    </div>
+</nav>
+
 </body>
 </html>
