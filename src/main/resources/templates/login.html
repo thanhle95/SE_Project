@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="common/admin_header :: header"></div>
+<div th:replace="common/admin_header :: navi"></div>
+<div class="container my-5">
+    <div class="div_login">
+        <h2>Log in is required</h2>
+        <div class="card">
+            <div class="card-body">
+                <form name='f' action="perform_login" method='POST'>
+                    <fieldset>
+                        <p>
+                            <label for="userEmail" class="form-label">Email : </label>
+                            <input id="userEmail" name="username" class="form-control" type="text"/>
+                        </p>
+                        <p>
+                            <label for="userPassword" class="form-label">Password : </label>
+                            <input id="userPassword" name="password" class="form-control" type="password"/>
+                        </p>
+                        <p>
+                            <input id="btnLogin" class="btn btn-success" type="submit" value="submit"/>
+                        </p>
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
