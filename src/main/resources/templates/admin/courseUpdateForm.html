@@ -17,34 +17,37 @@
 <div th:replace="common/admin_header :: header"></div>
 <div th:replace="common/admin_header :: navi_admin"></div>
 <div class="container my-5">
-    <h3> Update Course</h3>
     <div class="card">
         <div class="card-body">
-            <div class="col-md-8">
-                <form action="#" th:action="@{/course/update/{id}(id=${course.courseId})}" th:object="${course}" method="post">
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="courseName" class="col-form-label">Course Name</label>
-                            <input type="text" th:field="*{courseName}" class="form-control" id="courseName" placeholder="courseName">
-                            <span th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="courseCode" class="col-form-label">Course Code </label>
-                            <input type="text" th:field="*{courseCode}" class="form-control" id="courseCode" placeholder="courseCode">
-                            <span th:if="${#fields.hasErrors('courseCode')}" th:errors="*{courseCode}" class="text-danger"></span>
-                        </div>
-                        <div class="form-group col-md-8">
-                            <label for="preCourseId" class="col-form-label">Prerequisite Course Id</label>
-                            <input type="text" th:field="*{preCourseId}" class="form-control" id="preCourseId" placeholder="preCourseId">
-                            <span th:if="${#fields.hasErrors('preCourseId')}" th:errors="*{preCourseId}" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group col-md-8">
-                            <input type="submit" class="btn btn-success" value="Update Course">
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <form action="#" th:action="@{/course/update/{id}(id=${course.courseId})}" th:object="${course}" method="post">
+                <fieldset>
+                    <legend>Update Block</legend>
+                    <p>
+                        <label for="courseName" class="form-label">Course Name</label>
+                        <input type="text" th:field="*{courseName}" class="form-control" id="courseName"
+                               placeholder="courseName">
+                        <span th:if="${#fields.hasErrors('courseName')}" th:errors="*{courseName}"
+                              class="text-danger"></span>
+                    </p>
+                    <p>
+                        <label for="courseCode" class="form-label">Course Code </label>
+                        <input type="text" th:field="*{courseCode}" class="form-control" id="courseCode"
+                               placeholder="courseCode">
+                        <span th:if="${#fields.hasErrors('courseCode')}" th:errors="*{courseCode}"
+                              class="text-danger"></span>
+                    </p>
+                    <p>
+                        <label for="preCourseId" class="form-label">Prerequisite Course Id</label>
+                        <input type="text" th:field="*{preCourseId}" class="form-control" id="preCourseId"
+                               placeholder="preCourseId">
+                        <span th:if="${#fields.hasErrors('preCourseId')}" th:errors="*{preCourseId}"
+                              class="text-danger"></span>
+                    </p>
+                    <p>
+                        <input type="submit" class="btn btn-success" value="Update Course">
+                    </p>
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>

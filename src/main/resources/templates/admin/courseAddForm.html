@@ -20,18 +20,18 @@
                 <fieldset>
                     <legend>Add New Course</legend>
                     <p>
-                        <label for="courseName">Course Name : </label>
-                        <input id="courseName" type="text" th:field="*{courseName}"/>
+                        <label for="courseName" class="form-label">Course Name : </label>
+                        <input id="courseName" class="form-control" type="text" th:field="*{courseName}"/>
                     </p>
 
                     <p>
-                        <label for="teacherNumber">Course Code : </label>
-                        <input id="teacherNumber" type="text" th:field="*{courseCode}"/>
+                        <label for="teacherNumber" class="form-label">Course Code : </label>
+                        <input id="teacherNumber" class="form-control" type="text" th:field="*{courseCode}"/>
                     </p>
 
                     <p>
-                        <label for="startDate">Prerequisite Course Id : </label>
-                        <input id="startDate" type="text" th:field="*{preCourseId}"/>
+                        <label for="startDate" class="form-label">Prerequisite Course Id : </label>
+                        <input id="startDate" class="form-control" type="date" th:field="*{preCourseId}"/>
                     </p>
                     <p>
                         <input id="btnAdd" class="btn btn-success" type="submit" value="Add"/>
