@@ -21,18 +21,36 @@
                 <fieldset>
                     <legend>Add New Course</legend>
                     <p>
+                        <label for="teacherNumber" class="form-label">Course Code : </label>
+                        <input id="teacherNumber" class="form-control" type="text" th:field="*{courseCode}"/>
+                    </p>
+                    <p>
                         <label for="courseName" class="form-label">Course Name : </label>
                         <input id="courseName" class="form-control" type="text" th:field="*{courseName}"/>
                     </p>
 
                     <p>
-                        <label for="teacherNumber" class="form-label">Course Code : </label>
-                        <input id="teacherNumber" class="form-control" type="text" th:field="*{courseCode}"/>
+                        <label for="courseAbbrName" class="form-label">Course Short Name : </label>
+                        <input id="courseAbbrName" class="form-control" type="text" th:field="*{courseAbbrName}"/>
                     </p>
 
                     <p>
-                        <label for="startDate" class="form-label">Prerequisite Course Id : </label>
-                        <input id="startDate" class="form-control" type="date" th:field="*{preCourseId}"/>
+                        <label for="courseDescName" class="form-label">Course Description : </label>
+                        <textarea class="form-control" rows="5" id="courseDescName" th:field="*{courseDescription}"></textarea>
+                    </p>
+
+                    <p>
+                        <label for="courseCapacity" class="form-label">Course Capacity : </label>
+                        <input id="courseCapacity" class="form-control" type="text" th:field="*{courseCapacity}"/>
+                    </p>
+
+                    <p>
+                        <label for="coursePrerequisites" class="form-label">Prerequisite Course Id : </label>
+                        <select id="coursePrerequisites" class="form-select" aria-label="Default select example"
+                                th:field="*{preCourseId}">
+                            <option th:each="courseCode : ${courseCodeList}" th:value="${courseCode}"
+                                    th:text="${courseCode}"></option>
+                        </select>
                     </p>
                     <p>
                         <input id="btnAdd" class="btn btn-success" type="submit" value="Add"/>
