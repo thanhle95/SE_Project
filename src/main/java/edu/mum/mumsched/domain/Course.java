@@ -13,7 +13,13 @@ public class Course {
     @NotEmpty
     private String courseCode;
     private String courseName;
+    private String courseAbbrName;
+
+    @Lob
+    @Column( length = 100000 )
+    private String courseDescription;
     private String preCourseId;
+    private long courseCapacity;
 
     @OneToOne(mappedBy = "course")
     private Session session;
@@ -56,5 +62,29 @@ public class Course {
 
     public void setPreCourseId(String preCourseId) {
         this.preCourseId = preCourseId;
+    }
+
+    public String getCourseDescription() {
+        return courseDescription;
+    }
+
+    public void setCourseDescription(String courseDescription) {
+        this.courseDescription = courseDescription;
+    }
+
+    public String getCourseAbbrName() {
+        return courseAbbrName;
+    }
+
+    public void setCourseAbbrName(String courseAbbrName) {
+        this.courseAbbrName = courseAbbrName;
+    }
+
+    public long getCourseCapacity() {
+        return courseCapacity;
+    }
+
+    public void setCourseCapacity(long courseCapacity) {
+        this.courseCapacity = courseCapacity;
     }
 }

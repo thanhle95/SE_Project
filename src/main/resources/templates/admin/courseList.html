@@ -21,14 +21,20 @@
                 <tr>
                     <th>Course Code</th>
                     <th>Course Name</th>
-                    <th>Prerequisite Course Code</th>
+                    <th>Course Short Name</th>
+                    <th>Course Capacity</th>
+                    <th>Prerequisite</th>
+                    <th>Faculty</th>
                     <th>Action</th>
 
                 </tr>
                 <tr th:each="course : ${courseList}">
                     <td th:text="${course.courseCode}"></td>
                     <td th:text="${course.courseName}"></td>
+                    <td th:text="${course.courseAbbrName}"></td>
+                    <td th:text="${course.courseCapacity}"></td>
                     <td th:text="${course.preCourseId}"></td>
+                    <td></td>
                     <td>
                         <a
                                 th:href="@{/course/edit/{id}(id=${course.courseId})}"

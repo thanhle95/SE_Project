@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -31,6 +32,10 @@ public class CourseController {
     @RequestMapping("/course/update/{id}")
     public String showUpdateForm(@PathVariable("id") long id, @Valid Course course, Model model) {
         course.setCourseId(id);
+        String preCourseId = course.getPreCourseId();
+        if(!preCourseId.equals("None")){
+            course.setPreCourseId(preCourseId.split(" ",2)[0]);
+        }
         courseService.save(course);
         model.addAttribute("course", courseService.getAllCourse());
         return "redirect:/course";
@@ -40,6 +45,13 @@ public class CourseController {
     @RequestMapping("/course/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Course course = courseService.getCourseByCourseID(id);
+        List<Course> courseList = courseService.getAllCourse();
+        List<String> courseCodeList = new ArrayList<>();
+        courseCodeList.add("None");
+        for(Course c : courseList){
+            courseCodeList.add(c.getCourseCode() + " " + c.getCourseAbbrName());
+        }
+        model.addAttribute("courseCodeList", courseCodeList);
         model.addAttribute("course", course);
         return "admin/courseUpdateForm";
     }
@@ -47,12 +59,23 @@ public class CourseController {
     // Add more course
     @RequestMapping(value = "/course/add", method = RequestMethod.GET)
     public String courseRegForm(@ModelAttribute("newCourse")Course course, Model model){
+        List<Course> courseList = courseService.getAllCourse();
+        List<String> courseCodeList = new ArrayList<>();
+        courseCodeList.add("None");
+        for(Course c : courseList){
+            courseCodeList.add(c.getCourseCode() + " " + c.getCourseAbbrName());
+        }
+        model.addAttribute("courseCodeList", courseCodeList);
         model.addAttribute("newCourse", course);
         return "admin/courseAddForm";
     }
 
     @RequestMapping(value = {"/course/addnewcourse"}, method = RequestMethod.POST)
     public String registerNewCourse(@ModelAttribute("newCourse") Course course, Model model) {
+        String preCourseId = course.getPreCourseId();
+        if(!preCourseId.equals("None")){
+            course.setPreCourseId(preCourseId.split(" ",2)[0]);
+        }
         courseService.save(course);
         return "redirect:/course";
     }
