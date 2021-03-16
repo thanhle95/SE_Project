@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script th:src="@{/scripts/entry_ctrl.js}"></script>
 </head>
 <body>
 <div th:replace="common/admin_header :: header"></div>
@@ -19,9 +20,38 @@
             <form action="#" th:action="@{/entry/addnewentry}" th:object="${newEntry}" method="post">
                 <fieldset>
                     <legend>Add New Entry</legend>
+<!--                    <p>-->
+<!--                        <label for="entryName">Entry Name :</label>-->
+<!--                        <input id="entryName" class="form-control" type="text" th:field="*{entryName}"/>-->
+<!--                    </p>-->
+<!--                        <p>-->
+<!--                            <label for="entryName">Entry Name :</label>-->
+<!--                            <input id="entryName" class="form-control" type="month" th:field="*{entryName}"/>-->
+<!--                        </p>-->
+                    <p></p>
                     <p>
-                        <label for="entryName">Entry Name :</label>
-                        <input id="entryName" class="form-control" type="text" th:field="*{entryName}"/>
+                        <span>
+                            <label for="entry_month">Entry Month:</label>
+                            <select id="entry_month" name="entry_month">
+                              <option selected>January</option>
+                              <option>February</option>
+                              <option>March</option>
+                              <option>April</option>
+                              <option>May</option>
+                              <option>June</option>
+                              <option>July</option>
+                              <option>August</option>
+                              <option>September</option>
+                              <option>October</option>
+                              <option>November</option>
+                              <option>December</option>
+                            </select>
+                        </span>
+                        <span>
+                            <label for="entry_year">Entry Year:</label>
+                            <select id="entry_year" name="entry_year">
+                            </select>
+                      </span>
                     </p>
                     <p>
                         <label for="FPPNum">FPP Number : </label>

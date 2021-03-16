@@ -49,6 +49,6 @@ public class AccountController {
 
         userDao.save(user);
 
-        return "/";
+        return "redirect:/";
     }
 }
