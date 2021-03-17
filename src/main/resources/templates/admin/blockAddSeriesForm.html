@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Block</title>
+
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="common/admin_header :: header"></div>
+<div th:replace="common/admin_header :: navi_admin"></div>
+<div class="container my-5">
+    <div class="card">
+        <div class="card-body">
+            <form action="#" th:action="@{/block/addnewblockseries}" method="post">
+                <fieldset>
+                    <legend>Add New Block Series</legend>
+                    <p>
+                        <label for="entryList" class="form-label">Select Entry: </label>
+                        <select id="entryList" name="entry_name" class="form-select" aria-label="Default select example">
+                            <option th:each="entryName : ${entryNameList}" th:value="${entryName}"
+                                    th:text="${entryName}">
+                            </option>
+                        </select>
+                    </p>
+                    <p>
+                        <span>
+                            <label for="block_start_month" class="form-label">Block Start Month:</label>
+                            <select id="block_start_month" name="block_start_month" class="form-select">
+                              <option selected>January</option>
+                              <option>February</option>
+                              <option>March</option>
+                              <option>April</option>
+                              <option>May</option>
+                              <option>June</option>
+                              <option>July</option>
+                              <option>August</option>
+                              <option>September</option>
+                              <option>October</option>
+                              <option>November</option>
+                              <option>December</option>
+                            </select>
+                        </span>
+                        <span>
+                            <label for="block_num" class="form-label">Block Number:</label>
+                            <select id="block_num" name="block_num" class="form-select">
+                              <option selected>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
+                              <option>8</option>
+                              <option>9</option>
+                            </select>
+                        </span>
+                    </p>
+                    <p>
+                        <label for="startDate" class="form-label">Start Date : </label>
+                        <input id="startDate" name="block_start_date" class="form-control" type="date"/>
+                    </p>
+                        <input id="btnAdd" class="btn btn-success" type="submit" value="Add New Blocks"/>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

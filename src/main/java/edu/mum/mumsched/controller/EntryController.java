@@ -5,10 +5,7 @@ import edu.mum.mumsched.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +32,10 @@ public class EntryController {
     }
 
     @RequestMapping(value = {"entry/addnewentry"}, method = RequestMethod.POST)
-    public String registerNewEntry(@ModelAttribute("newEntry") Entry entry, Model model) {
+    public String registerNewEntry(@RequestParam(name = "entry_month") String month,
+                                   @RequestParam(name = "entry_year") String year,
+                                   @ModelAttribute("newEntry") Entry entry, Model model) {
+        entry.setEntryName(month.substring(0,3) + year);
         entryService.save(entry);
         return "redirect:/entry";
     }
