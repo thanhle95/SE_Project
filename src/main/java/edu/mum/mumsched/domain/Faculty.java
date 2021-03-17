@@ -14,6 +14,7 @@ public class Faculty {
     @NotEmpty
     private String facultyName;
     private String email;
+    private long userId;
 
     public long getFacultyId() {
         return facultyId;
@@ -39,4 +40,11 @@ public class Faculty {
         this.email = email;
     }
 
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 }

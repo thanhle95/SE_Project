@@ -13,6 +13,7 @@ public class Student {
     private String studentFirstName;
     private String studentLastName;
     private String email;
+    private long userId;
 
     public long getStudentId() {
         return studentId;
@@ -46,4 +47,11 @@ public class Student {
         this.email = email;
     }
 
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 }
