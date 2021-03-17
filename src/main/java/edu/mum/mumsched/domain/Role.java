@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer roleId;
 
     private String name;
 
@@ -15,12 +15,12 @@ public class Role {
 
     // constructors, getters and setters are not shown for brevity
 
-    public Integer getId() {
-        return id;
+    public Integer getRoleId() {
+        return roleId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRoleId(Integer id) {
+        this.roleId = id;
     }
 
     public String getName() {
