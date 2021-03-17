@@ -21,6 +21,9 @@ public interface BlockDao extends CrudRepository<Block, Long> {
     @Query("select s from Block s")
     public List<Block> getAllBlock();
 
+    @Query("select s from Block s where s.entryName= :entryName")
+    public List<Block> findBlockByEntryName(@Param("entryName") String entryName);
+
     @Transactional
     @Modifying
     @Query("delete from Block s where s.blockId= :blockID")

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Builder</title>
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="common/admin_header :: header"></div>
+<div th:replace="common/admin_header :: navi_admin"></div>
+<div class="container my-5">
+    <div class="card">
+        <div class="card-body">
+            <form action="#" th:action="@{/schedule/sendevent}" method="post">
+                <fieldset>
+                    <legend>Schedule Builder</legend>
+                    <p>
+                        <label for="entryList" class="form-label">Select Entry: </label>
+                        <select name= "entryName" id="entryList" class="form-select" aria-label="Default select example"
+                                th:field="*{entry.entryName}">
+                            <option th:each="entryName : ${entryNameList}" th:value="${entryName}"
+                                    th:text="${entryName}"></option>
+                        </select>
+                    </p>
+                    <p>
+                        <input id="btnUpdate" class="btn btn-success" type="submit" value="Build Schedule"/>
+                    </p>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
