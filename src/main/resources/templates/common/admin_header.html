@@ -24,9 +24,9 @@
     <div class="w3-bar w3-theme w3-card-2 w3-wide notranslate">
         <a class="w3-bar-item w3-button w3-hover-white w3-padding-16 hidesm" href="javascript:void(0)" onclick="w3_open()"><i class="fa"></i></a>
         <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/" id="navbtn_home">HOME <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
-        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/faculty" id="navbtn_faculty">FACULTY <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
-        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/student" id="navbtn_student">STUDENT <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
-        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/block" id="navbtn_admin">ADMIN <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
+        <a sec:authorize="hasAuthority('Admin')" class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/block" id="navbtn_admin">ADMIN <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
+        <a sec:authorize="hasAuthority('Faculty')" class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/faculty" id="navbtn_faculty">FACULTY <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
+        <a sec:authorize="hasAuthority('Student')" class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/student" id="navbtn_student">STUDENT <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
         <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="navbtn_course">COURSES <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
         <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="navbtn_schedule">SCHEDULE</a>
         <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="cert_contact">CONTACT</a>

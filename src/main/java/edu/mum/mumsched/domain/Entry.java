@@ -33,6 +33,13 @@ public class Entry {
         block.setEntry(this);
     }
 
+    @OneToMany(mappedBy = "entry")
+    private Set<Schedule> scheduleList = new HashSet<>();
+
+    public void addSchedule(Schedule schedule) {
+        scheduleList.add(schedule);
+        schedule.setEntry(this);
+    }
     public void removeBlock(Block block) {
         blockList.remove(block);
     }

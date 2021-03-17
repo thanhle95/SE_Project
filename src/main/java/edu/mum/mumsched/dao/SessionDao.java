@@ -18,4 +18,7 @@ public interface SessionDao extends CrudRepository<Session, Long> {
 
     @Query("select se from Session se")
     public List<Session> getAllSessions();
+
+    @Query("delete from Session se where se.sessionId= :id")
+    public void removeById(@Param("id") Long sessionId);
 }

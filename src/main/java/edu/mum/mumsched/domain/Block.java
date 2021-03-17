@@ -27,7 +27,7 @@ public class Block {
     private String entryName;
 //    private long entryId;
 
-    @JoinColumn(name="entryId",nullable = false)
+    @JoinColumn(name="entry_id",nullable = false)
     @ManyToOne(fetch = FetchType.EAGER)
     private Entry entry;
 
@@ -41,24 +41,18 @@ public class Block {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "block")
     private Set<Session> sessionList = new HashSet<>();
-
     public void addSession(Session session){
         sessionList.add(session);
         session.setBlock(this);
     }
 
+//    @JoinColumn(name="schedule_id",nullable = true)
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private Schedule schedule;
 
     public long getBlockId() {
         return blockId;
     }
-
-//    public long getEntryId() {
-//        return entryId;
-//    }
-//
-//    public void setEntryId(long entryID) {
-//        this.entryId = entryID;
-//    }
 
     public void setBlockId(long blockID) {
         this.blockId = blockID;
@@ -111,4 +105,12 @@ public class Block {
     public void setEntryName(String entryName) {
         this.entryName = entryName;
     }
+
+//    public Schedule getSchedule() {
+//        return schedule;
+//    }
+//
+//    public void setSchedule(Schedule schedule) {
+//        this.schedule = schedule;
+//    }
 }

@@ -4,6 +4,8 @@ import edu.mum.mumsched.dao.RoleDao;
 import edu.mum.mumsched.dao.UserDao;
 import edu.mum.mumsched.domain.Role;
 import edu.mum.mumsched.domain.User;
+import edu.mum.mumsched.service.FacultyService;
+import edu.mum.mumsched.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,12 @@ public class AccountController {
 
     @Autowired
     RoleDao roleDAO;
+
+    @Autowired
+    StudentService studentService;
+
+    @Autowired
+    FacultyService facultyService;
 
     @RequestMapping("/secured")
     public void secureResource(HttpServletRequest request, HttpServletResponse response) {
