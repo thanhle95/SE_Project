@@ -3,7 +3,12 @@ div.header_banner {
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+
     height: 130px;
+
+    height: 60px;
+    position: relative;
+
 }
 
 div.header_menu {
@@ -35,7 +40,8 @@ div.header_menu {
     background-color: #4CAF50 !important;
 }
 .w3-card, .w3-card-2 {
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    /*box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);*/
+    box-shadow: 0 2px 5px 0 lightgrey, 0 2px 10px 0 rgb(0 0 0);
 }
 .w3-bar {
     width: 100%;
@@ -140,12 +146,17 @@ a:-webkit-any-link {
     position: absolute !important;
     margin-bottom: -155px;
 }
+.w3-button:hover{
+    color:#000!important;background-color:#ccc!important
+}
+
 .w3-white, .w3-hover-white:hover {
     color: #000!important;
     background-color: #fff!important;
 }
 .w3-card, .w3-card-2 {
-    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+    /*box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%);*/
+    box-shadow: 0 2px 5px 0 lightgrey, 0 2px 10px 0 rgb(0 0 0)/12%;
 }
 .w3-sidebar {
     height: 100%;
@@ -181,7 +192,7 @@ nav {
     }
 }
 
-@media screen and (min-width: 769px)
+@media screen and (min-width: 769px) {
     .w3-bar-block .w3-button {
         padding: 0 16px !important;
     }
@@ -224,6 +235,8 @@ nav {
 .w3-container, .w3-panel {
     padding: 0.01em 16px;
 }
+
+
 
 /*END*/
 
