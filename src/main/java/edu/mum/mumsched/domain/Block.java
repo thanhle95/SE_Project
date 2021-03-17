@@ -1,5 +1,9 @@
 package edu.mum.mumsched.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -17,8 +21,14 @@ public class Block {
 
     @NotEmpty
     private String blockName;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
@@ -104,6 +114,21 @@ public class Block {
 
     public void setEntryName(String entryName) {
         this.entryName = entryName;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "blockId=" + blockId +
+                ", blockName=" + blockName +
+                ", startDate=" + startDate.toString() +
+                ", endDate=" + endDate.toString() +
+                ", FPPNum=" + FPPNum +
+                ", MPPNum=" + MPPNum +
+                ", entryName=" + entryName +
+                ", entryId=" + entry.getEntryId() +
+                ", sessionList=" + sessionList +
+                '}';
     }
 
 //    public Schedule getSchedule() {

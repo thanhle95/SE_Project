@@ -87,4 +87,20 @@ public class Course {
     public void setCourseCapacity(long courseCapacity) {
         this.courseCapacity = courseCapacity;
     }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+                "courseId=" + courseId +
+                ", courseCode=" + courseCode +
+                ", courseName=" + courseName +
+                ", courseAbbrName=" + courseAbbrName  +
+                ", courseDescription=" + courseDescription +
+                ", preCourseId=" + preCourseId +
+                ", courseCapacity=" + courseCapacity +
+                ", session=" + session +
+                '}';
+    }
+
 }

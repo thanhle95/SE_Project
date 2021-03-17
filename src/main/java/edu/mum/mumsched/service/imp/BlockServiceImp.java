@@ -38,4 +38,9 @@ public class BlockServiceImp implements BlockService {
     public void deleteBlockByBlockID(long blockID) {
         blockDAO.deleteBlockByBlockID(blockID);
     }
+
+    @Override
+    public List<Block> getBlockByEntryName(String entryName){
+        return blockDAO.findBlockByEntryName(entryName);
+    }
 }
