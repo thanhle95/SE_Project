@@ -4,12 +4,10 @@ package edu.mum.mumsched.controller;
 import edu.mum.mumsched.domain.Course;
 import edu.mum.mumsched.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -26,6 +24,14 @@ public class CourseController {
         List<Course> courseList = courseService.getAllCourse();
         model.addAttribute("courseList", courseList);
         return "admin/courseList";
+    }
+
+    // Display List Course
+    @RequestMapping(value="/course/description", method= RequestMethod.GET)
+    public String courseDescription(Model model) {
+        List<Course> courseList = courseService.getAllCourse();
+        model.addAttribute("courseList", courseList);
+        return "admin/courseDescription";
     }
 
     // Update Course Detail
@@ -85,5 +91,15 @@ public class CourseController {
     public String deleteStudent(@PathVariable("id") Long courseId, Model model) {
         courseService.deleteById(courseId);
         return "redirect:/course";
+    }
+
+    @GetMapping("/course-info/{id}")
+    public ResponseEntity<Course> read(@PathVariable("id") String courseCode) {
+        Course foundCourse = courseService.getCourseByCourseCode(courseCode);
+        if (foundCourse == null) {
+            return ResponseEntity.notFound().build();
+        } else {
+            return ResponseEntity.ok(foundCourse);
+        }
     }
 }
