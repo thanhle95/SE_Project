@@ -28,7 +28,8 @@
         <a sec:authorize="hasAuthority('Faculty')" class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/faculty" id="navbtn_faculty">FACULTY <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
         <a sec:authorize="hasAuthority('Student')" class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="/student" id="navbtn_student">STUDENT <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
         <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="navbtn_course">COURSES <i class="fa fa-caret-down"></i><i class="fa fa-caret-up" style="display:none"></i></a>
-        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="navbtn_schedule">SCHEDULE</a>
+        <a sec:authorize="hasAnyAuthority('Admin','Faculty','Student')" class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="navbtn_schedule">SCHEDULE</a>
+        <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="cert_news">NEWS</a>
         <a class="w3-bar-item w3-button barex w3-hover-white w3-padding-16" href="" id="cert_contact">CONTACT</a>
 
         <div class="w3-right">
@@ -46,6 +47,10 @@
     <div class="w3-bar-block">
         <div class="w3-container">
             <h4 class="w3-margin-top">Home</h4>
+            <a class="w3-bar-item w3-button" href="/">Main Page</a>
+            <a class="w3-bar-item w3-button" href="">About us</a>
+            <a class="w3-bar-item w3-button" href="">Contact</a>
+
         </div>
     </div>
 </nav>

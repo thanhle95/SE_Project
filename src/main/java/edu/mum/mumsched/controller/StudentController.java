@@ -1,6 +1,5 @@
 package edu.mum.mumsched.controller;
 
-import edu.mum.mumsched.domain.Faculty;
 import edu.mum.mumsched.domain.Student;
 import edu.mum.mumsched.service.FacultyService;
 import edu.mum.mumsched.service.StudentService;
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 public class StudentController {
@@ -24,11 +21,6 @@ public class StudentController {
 
     @Autowired
     FacultyService facultyService;
-
-    @RequestMapping(value="/", method= RequestMethod.GET)
-    public String index(){
-        return "index";
-    }
 
     @RequestMapping(value="/student/add", method= RequestMethod.GET)
     public String studentRegForm(@ModelAttribute("newStudent") Student student, Model model){
