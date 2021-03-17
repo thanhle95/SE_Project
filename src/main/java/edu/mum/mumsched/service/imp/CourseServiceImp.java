@@ -37,4 +37,9 @@ public class CourseServiceImp implements CourseService {
     public void deleteById(long courseId){
         courseDao.deleteById(courseId);
     }
+
+    @Override
+    public Course getCourseByCourseCode(String courseCode) {
+        return courseDao.findCourseByCourseCode(courseCode);
+    }
 }

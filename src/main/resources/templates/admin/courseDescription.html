@@ -4,13 +4,11 @@
     <title>Course List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
-    <link rel="stylesheet" th:href="@{/styles/admin_course.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script th:src="@{/scripts/course_ctrl.js}"></script>
 </head>
 <body>
 <div th:replace="common/admin_header :: header"></div>
@@ -23,35 +21,18 @@
                     <th>Code</th>
                     <th>Name</th>
                     <th>Short Name</th>
-                    <th>Capacity</th>
-                    <th>Prerequisite</th>
-                    <th>Action</th>
-
+                    <th>Description</th>
+                    <th>Faculty</th>
                 </tr>
                 <tr th:each="course : ${courseList}">
                     <td th:text="${course.courseCode}"></td>
-                    <td><a href="" th:attr="data-courseId=${course.courseCode}"  th:text="${course.courseName}"></a></td>
+                    <td th:text="${course.courseName}"></td>
                     <td th:text="${course.courseAbbrName}"></td>
-                    <td th:text="${course.courseCapacity}"></td>
-                    <td th:if="${course.preCourseId} != 'None'"><a href="" th:attr="data-courseId=${course.preCourseId}" th:text="${course.preCourseId}"></a></td>
-                    <td th:if="${course.preCourseId} == 'None'" th:text="${course.preCourseId}"></td>
-                    <td>
-                        <a
-                                th:href="@{/course/edit/{id}(id=${course.courseId})}"
-                                class="btn btn-success"
-                        >Update</a
-                        >
-                        <a
-                                th:href="@{/course/delete/{id}(id=${course.courseId})}"
-                                class="btn btn-danger"
-                        >Delete</a
-                        >
-                    </td>
+                    <td th:text="${course.courseDescription}"></td>
+                    <td></td>
                 </tr>
             </table>
-            <a href="/course/add" class="btn btn-success">Add Course</a>
         </div>
-        <div id="div_course_info" style="position: fixed;display:none;"></div>
     </div>
 </div>
 </body>

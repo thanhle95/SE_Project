@@ -1,0 +1,8 @@
+div#div_course_info {
+    width: 40%;
+    color: #15597e;
+    font-size: 1em;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 5px;
+}
