@@ -3,7 +3,7 @@ package edu.mum.mumsched.security.config;
 import edu.mum.mumsched.security.CustomAccessDeniedHandler;
 import edu.mum.mumsched.security.CustomAuthenticationFailureHandler;
 import edu.mum.mumsched.security.CustomLogoutSuccessHandler;
-import edu.mum.mumsched.service.imp.ShopmeUserDetailsServiceImp;
+import edu.mum.mumsched.service.imp.MiuUserDetailsServiceImp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -44,7 +44,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new ShopmeUserDetailsServiceImp();
+        return new MiuUserDetailsServiceImp();
     }
 
     @Bean
@@ -64,6 +64,7 @@ public class SecSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
+
     }
 
     @Override

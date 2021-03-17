@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Header</title>
@@ -9,6 +9,18 @@
 <body>
 <div class="header" th:fragment="header">
     <div class="header_banner" th:fragment="header_banner"></div>
+    <div class="header_banner" th:fragment="header_banner">
+        <div sec:authorize="isAuthenticated()">
+            <p>
+                <a id="header_banner_button" href="/logout" class="btn btn-success">LOG OUT</a>
+            </p>
+        </div>
+<!--        <div sec:authorize="hasAuthority('Admin')">-->
+<!--            <p>-->
+<!--                You are admin!-->
+<!--            </p>-->
+<!--        </div>-->
+    </div>
 <!--    <div class="header_menu" th:fragment="menu"></div>-->
     <div class="w3-bar w3-theme w3-card-2 w3-wide notranslate">
         <a class="w3-bar-item w3-button w3-hover-white w3-padding-16 hidesm" href="javascript:void(0)" onclick="w3_open()"><i class="fa"></i></a>
