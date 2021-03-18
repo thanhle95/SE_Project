@@ -43,4 +43,9 @@ public class BlockServiceImp implements BlockService {
     public List<Block> getBlockByEntryName(String entryName){
         return blockDAO.findBlockByEntryName(entryName);
     }
+
+    @Override
+    public List<Block> getBlockByEntryEntryId(long entryId){
+        return blockDAO.findBlockByEntryEntryId(entryId);
+    }
 }
