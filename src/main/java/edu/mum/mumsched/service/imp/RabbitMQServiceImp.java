@@ -67,20 +67,15 @@ public class RabbitMQServiceImp implements RabbitMQService {
     }
 
     public void send(ScheduleBuilderDTO scheduleRabbitMQJob){
-        Gson gson = new Gson();
+
         RabbitmqDTO rabbitmqDTO = convertToRabbitJson(scheduleRabbitMQJob);
 
+        rabbitTemplate.convertAndSend(exchange, routingkey, rabbitmqDTO);
 
+        LOGGER.info("Push unify job to queue");
+    }
 
+    public void received(){
 
-//        String mess = scheduleRabbitMQJob.toString();
-
-
-        String message = gson.toJson(rabbitmqDTO);
-
-        rabbitTemplate.convertAndSend(exchange, routingkey, message);
-
-//        rabbitTemplate.convertAndSend(exchange, routingkey, scheduleRabbitMQJob);
-        LOGGER.info("Push unify job to queue {}", scheduleRabbitMQJob);
     }
 }
