@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+title  Sequence Diagram -  Create New Block
+autonumber
+actor Admin
+participant UI
+participant BlockController
+participant Block
+participant BlockService
+participant EntryService
+participant BlockRepository
+participant EntryRepository
+actor DateBase
+
+autonumber 1
+Admin -> UI: new
+autonumber 1.1
+UI -> BlockController: add()
+autonumber 1.2
+BlockController -> EntryService: findAll()
+autonumber 1.3
+EntryService -> DateBase: read
+BlockController --> UI: displayPage
+deactivate DateBase
+deactivate EntryService
+
+
+autonumber 2
+Admin -> UI: inputAndSubmit
+autonumber 2.1
+UI -> BlockController: save()
+BlockController --> Block: //bindingData
+BlockController -> BlockController: checkValida
+BlockController -> BlockService: hasExistsBlock(entryId)
+BlockService -> BlockRepository: hasExistsBlock(entryId)
+deactivate BlockService
+BlockRepository -> DateBase: read
+deactivate DateBase
+deactivate BlockRepository
+BlockController --> UI: if(fails) return Error
+UI --> Admin: displayError
+BlockController -> BlockService: save(block)
+BlockService -> BlockRepository: save(block)
+BlockRepository -> DateBase: create
+BlockController --> UI: returnSuccess
+UI --> Admin: displaySuccess
+@enduml
