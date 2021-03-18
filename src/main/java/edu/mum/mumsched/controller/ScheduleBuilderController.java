@@ -8,6 +8,7 @@ import edu.mum.mumsched.service.BlockService;
 import edu.mum.mumsched.service.CourseService;
 import edu.mum.mumsched.service.EntryService;
 import edu.mum.mumsched.service.ScheduleBuilderService;
+import edu.mum.mumsched.service.imp.RestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,9 @@ public class ScheduleBuilderController {
     @Autowired
     BlockService blockService;
 
+    @Autowired
+    RestService restService;
+
     @RequestMapping(value = "/schedule/builder", method = RequestMethod.GET)
     public String scheduleBuilder(@ModelAttribute("entry") Entry entry, Model model) {
         List<String> entryNameList = new ArrayList<>();
@@ -54,6 +58,9 @@ public class ScheduleBuilderController {
         Set<Course> courseList = new HashSet<>(courseService.getAllCourse());
         Set<Block> blockList = new HashSet<>(blockService.getBlockByEntryName(entryName));
         scheduleBuilderService.runScheduleBuilder(entryId, courseList, blockList);
+
+        String response = restService.getPostsPlainJSON();
+        System.out.println(response);
         return "redirect:/schedule/builder";
     }
 
