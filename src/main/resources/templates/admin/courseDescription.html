@@ -4,6 +4,7 @@
     <title>Course List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" th:href="@{/styles/styles.css}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -28,7 +29,7 @@
                     <td th:text="${course.courseCode}"></td>
                     <td th:text="${course.courseName}"></td>
                     <td th:text="${course.courseAbbrName}"></td>
-                    <td th:text="${course.courseDescription}"></td>
+                    <td class="td_course_description" th:text="${course.courseDescription}"></td>
                     <td></td>
                 </tr>
             </table>

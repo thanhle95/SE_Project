@@ -5,9 +5,11 @@ import edu.mum.mumsched.domain.Entry;
 import edu.mum.mumsched.domain.Role;
 import edu.mum.mumsched.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RoleServiceImp implements RoleService {
 
     @Autowired

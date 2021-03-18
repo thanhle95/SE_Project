@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Account List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="common/admin_header :: header"></div>
+<div th:replace="common/admin_header :: navi_admin"></div>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Email</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+                <tr th:each="user : ${userList}">
+                    <!--                    <td th: text = "${# ids.seq ('')}"></td>-->
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.roles[0].name}"></td>
+                    <td>
+                        <a
+                                th:href="@{/admin/account/edit/{id}(id=${user.UserId})}"
+                                class="btn btn-success"
+                        >Update</a
+                        >
+                        <a
+                                th:href="@{/admin/account/delete/{id}(id=${user.UserId})}"
+                                class="btn btn-danger"
+                        >Delete</a
+                        >
+                    </td>
+                </tr>
+            </table>
+            <a href="/admin/account/add" class="btn btn-success">Add Account</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
