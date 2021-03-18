@@ -5,9 +5,11 @@ import edu.mum.mumsched.dao.ScheduleDao;
 import edu.mum.mumsched.domain.Schedule;
 import edu.mum.mumsched.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ScheduleServiceImp implements ScheduleService {
 
     @Autowired
@@ -37,4 +39,5 @@ public class ScheduleServiceImp implements ScheduleService {
     public void GenerateSchedule() {
 
     }
+
 }

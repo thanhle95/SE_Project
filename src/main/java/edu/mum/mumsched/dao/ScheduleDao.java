@@ -24,4 +24,5 @@ public interface ScheduleDao extends CrudRepository<Schedule, Long> {
 
     @Query("delete from Schedule se where se.scheduleId= :id")
     public void removeById(@Param("id") Long scheduleId);
+
 }

@@ -2,6 +2,7 @@ package edu.mum.mumsched.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,10 +14,8 @@ public class Session {
     private long sessionId;
 
     @NotEmpty
-    private Date startDate;
-    private Date endDate;
-//    private long blockId;
-//    private long courseId;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private long facultyId;
 
     @JoinColumn(name="blockId",nullable = false)
@@ -43,19 +42,19 @@ public class Session {
         this.sessionId = sessionId;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
@@ -74,20 +73,4 @@ public class Session {
     public void setCourse(Course course) {
         this.course = course;
     }
-
-//    public long getBlockId() {
-//        return blockId;
-//    }
-//
-//    public void setBlockId(long blockId) {
-//        this.blockId = blockId;
-//    }
-
-//    public long getCourseId() {
-//        return courseId;
-//    }
-//
-//    public void setCourseId(long courseId) {
-//        this.courseId = courseId;
-//    }
 }

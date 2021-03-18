@@ -58,8 +58,8 @@ public class Schedule {
         this.blockList = blockList;
     }
 
-//    public void addBlock(Block block) {
-//        this.blockList.add(block);
-//        block.setSchedule(this);
-//    }
+    public void addBlock(Block block) {
+        this.blockList.add(block);
+        //block.setSchedule(this);
+    }
 }

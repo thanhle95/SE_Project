@@ -138,4 +138,12 @@ public class Block {
 //    public void setSchedule(Schedule schedule) {
 //        this.schedule = schedule;
 //    }
+
+    public Set<Session> getSessionList() {
+        return sessionList;
+    }
+
+    public void setSessionList(Set<Session> sessionList) {
+        this.sessionList = sessionList;
+    }
 }

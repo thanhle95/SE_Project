@@ -99,4 +99,12 @@ public class Entry {
     public void setBlockList(Set<Block> blockList) {
         this.blockList = blockList;
     }
+
+    public Set<Schedule> getScheduleList() {
+        return scheduleList;
+    }
+
+    public void setScheduleList(Set<Schedule> scheduleList) {
+        this.scheduleList = scheduleList;
+    }
 }
