@@ -19,18 +19,18 @@ public class Course {
     @Column( length = 100000 )
     private String courseDescription;
     private String preCourseId;
-    private long courseCapacity;
+    private int courseCapacity;
 
-    @OneToOne(mappedBy = "course")
-    private Session session;
-
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
+//    @OneToOne(mappedBy = "course")
+//    private Session session;
+//
+//    public Session getSession() {
+//        return session;
+//    }
+//
+//    public void setSession(Session session) {
+//        this.session = session;
+//    }
 
     public long getCourseId() {
         return courseId;
@@ -80,11 +80,11 @@ public class Course {
         this.courseAbbrName = courseAbbrName;
     }
 
-    public long getCourseCapacity() {
+    public int getCourseCapacity() {
         return courseCapacity;
     }
 
-    public void setCourseCapacity(long courseCapacity) {
+    public void setCourseCapacity(int courseCapacity) {
         this.courseCapacity = courseCapacity;
     }
 
@@ -99,7 +99,7 @@ public class Course {
                 ", courseDescription=" + courseDescription +
                 ", preCourseId=" + preCourseId +
                 ", courseCapacity=" + courseCapacity +
-                ", session=" + session +
+//                ", session=" + session +
                 '}';
     }
 

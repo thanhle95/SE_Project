@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class ScheduleBuilderController {
@@ -66,9 +66,15 @@ public class ScheduleBuilderController {
 
         String response = restService.getPostsPlainJSON();
 
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(response);
+
         ScheduleJson[] scheduleJson = mapper.fromJson(response, ScheduleJson[].class);
         generateSchedule(scheduleJson);
-        System.out.println(response);
         return "redirect:/schedule/builder";
     }
 
@@ -79,6 +85,7 @@ public class ScheduleBuilderController {
             session.setCourse(courseService.getCourseByCourseID(sched.course_id));
             session.setStartDate(LocalDate.parse(sched.start_date,DateTimeFormatter.RFC_1123_DATE_TIME));
             session.setEndDate(LocalDate.parse(sched.end_date,DateTimeFormatter.RFC_1123_DATE_TIME));
+            session.setSessionCapacity(courseService.getCourseByCourseID(sched.course_id).getCourseCapacity());
             Block block = blockService.getBlockByBlockID(sched.block_id);
             block.addSession(session);
             schedule.addBlock(block);

@@ -2,12 +2,11 @@ package edu.mum.mumsched.controller;
 
 import edu.mum.mumsched.dao.RoleDao;
 import edu.mum.mumsched.dao.UserDao;
+import edu.mum.mumsched.domain.Entry;
 import edu.mum.mumsched.domain.Role;
+import edu.mum.mumsched.domain.Student;
 import edu.mum.mumsched.domain.User;
-import edu.mum.mumsched.service.FacultyService;
-import edu.mum.mumsched.service.RoleService;
-import edu.mum.mumsched.service.StudentService;
-import edu.mum.mumsched.service.UserService;
+import edu.mum.mumsched.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -35,6 +34,9 @@ public class AccountController {
     @Autowired
     FacultyService facultyService;
 
+    @Autowired
+    EntryService entryService;
+
     @RequestMapping("/secured")
     public void secureResource(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("accessing secured resource");
@@ -47,7 +49,13 @@ public class AccountController {
 
     @GetMapping("/admin/account/add")
     public String accountAddForm(Model model) {
+
+        List<String> entryNameList = new ArrayList<>();
+        for(Entry entry : entryService.getAllEntry()) {
+            entryNameList.add(entry.getEntryName());
+        }
         model.addAttribute("user", new User());
+        model.addAttribute("entryNameList",entryNameList);
         return "admin/accountAddForm";
     }
 
@@ -70,7 +78,9 @@ public class AccountController {
     }
 
     @PostMapping("/admin/process_register")
-    public String processRegister(@RequestParam(name = "user_role") String roleName, User user) {
+    public String processRegister(@RequestParam(name = "user_role") String roleName,
+                                  @RequestParam(name = "user_entry") String entryName,
+                                  User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -78,7 +88,12 @@ public class AccountController {
         Set<Role> roles = new HashSet<>();
         roles.add(roleService.getRoleByRoleName(roleName));
         user.setRoles(roles);
-
+        if(roleName.equals("Student")){
+            Student student = new Student();
+            student.setUser(user);
+            student.setEntry(entryService.getEntryByEntryName(entryName));
+            studentService.save(student);
+        }
         userService.save(user);
 
         return "redirect:/admin/account";
@@ -95,6 +110,11 @@ public class AccountController {
 
     @RequestMapping(value = {"/admin/account/delete/{id}"}, method=RequestMethod.GET)
     public String accountDeleteForm(@PathVariable("id") Long id, Model model) {
+        for(Role role : userService.getUserByUserID(id).getRoles()){
+            if(role.getName().equals("Student")){
+                studentService.deleteById(studentService.getStudentByUserId(id).getStudentId());
+            }
+        }
         userService.deleteUserByUserID(id);
         return "redirect:/admin/account";
     }

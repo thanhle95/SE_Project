@@ -2,6 +2,8 @@ package edu.mum.mumsched.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Student {
@@ -9,49 +11,52 @@ public class Student {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long studentId;
 
-    @NotEmpty
-    private String studentFirstName;
-    private String studentLastName;
-    private String email;
-    private long userId;
+//    @NotEmpty
+//    private String studentFirstName;
+//    private String studentLastName;
+//    private String email;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "entry_id")
+    private Entry entry;
+
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "sessions_students",
+            joinColumns = @JoinColumn(name = "session_id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private Set<Session> sessions = new HashSet<>();
 
     public long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(long id) {
-        this.studentId = id;
+    public void setStudentId(long studentId) {
+        this.studentId = studentId;
     }
 
-    public String getStudentFirstName() {
-        return studentFirstName;
+    public User getUser() {
+        return user;
     }
 
-    public void setStudentFirstName(String firstName) {
-        this.studentFirstName = firstName;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getStudentLastName() {
-        return studentLastName;
+    public Entry getEntry() {
+        return entry;
     }
 
-    public void setStudentLastName(String lastName) {
-        this.studentLastName = lastName;
+    public void setEntry(Entry entry) {
+        this.entry = entry;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void addSession(Session session){
+        this.sessions.add(session);
     }
 }

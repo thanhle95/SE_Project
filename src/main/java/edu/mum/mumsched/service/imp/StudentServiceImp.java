@@ -23,8 +23,13 @@ public class StudentServiceImp implements StudentService {
     }
 
     @Override
-    public Student getStudentByEmail(String email){
-        return studentDao.findStudentByEmail(email);
+    public Student getStudentByUserId(long userId){
+        return studentDao.findStudentByUserId(userId);
+    }
+
+    @Override
+    public Student getStudentByUserEmail(String email){
+        return studentDao.findStudentByUserEmail(email);
     }
 
     @Override

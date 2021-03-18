@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Account Update</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="common/admin_header :: header"></div>
+<div th:replace="common/admin_header :: navi_student"></div>
+<div class="container my-5">
+    <div class="div_login">
+        <h2>Student Profile</h2>
+        <div class="card">
+            <div class="card-body">
+<!--                <form name='f' th:action="@{/student/profile/{id}(id=${user.UserId})}" th:object="${user}" method='POST'>-->
+                    <fieldset>
+                        <p>
+                            <label for="userId" class="form-label">Student ID : </label>
+                            <input id="userId" name="userid" th:field="*{student.studentId}" class="form-control" type="text"/>
+                        </p>
+                        <p>
+                            <label for="userEmail" class="form-label">Email : </label>
+                            <input id="userEmail" name="username" th:field="*{student.user.email}" class="form-control" type="text"/>
+                        </p>
+                        <p>
+                            <label for="userFirstName" class="form-label">FirstName : </label>
+                            <input id="userFirstName" name="firstname" th:field="*{student.user.firstName}" class="form-control" type="text"/>
+                        </p>
+                        <p>
+                            <label for="userLastName" class="form-label">LastName : </label>
+                            <input id="userLastName" name="lastname" th:field="*{student.user.lastName}" class="form-control" type="text"/>
+                        </p>
+                        <p>
+                            <label for="userEntry" class="form-label">Entry : </label>
+                            <input id="userEntry" name="entryname" th:field="*{student.entry.entryName}" class="form-control" type="text"/>
+                        </p>
+<!--                        <p>-->
+<!--                            <input id="btnUpdate" class="btn btn-success" type="submit" value="submit"/>-->
+<!--                        </p>-->
+                    </fieldset>
+<!--                </form>-->
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

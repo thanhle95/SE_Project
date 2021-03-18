@@ -3,7 +3,6 @@ package edu.mum.mumsched.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -30,9 +29,16 @@ public class Session {
         this.block = block;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "courseId")
     private Course course;
+
+    @ManyToMany(mappedBy = "sessions")
+    private Set<Student> students = new HashSet<>();
+
+    private int sessionCapacity;
+    private int sessionEnrolled;
+    private String sessionClassRoom;
 
     public long getSessionId() {
         return sessionId;
@@ -72,5 +78,42 @@ public class Session {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
+    }
+
+    public int getSessionCapacity() {
+        return sessionCapacity;
+    }
+
+    public void setSessionCapacity(int capacity) {
+        this.sessionCapacity = capacity;
+    }
+
+    public int getSessionEnrolled() {
+        return sessionEnrolled;
+    }
+
+    public void setSessionEnrolled(int sessionEnrolled) {
+        this.sessionEnrolled = sessionEnrolled;
+    }
+
+    public void addStudents(Student student){
+        this.students.add(student);
+        this.sessionEnrolled++;
+    }
+
+    public String getSessionClassRoom() {
+        return sessionClassRoom;
+    }
+
+    public void setSessionClassRoom(String sessionClassRoom) {
+        this.sessionClassRoom = sessionClassRoom;
     }
 }

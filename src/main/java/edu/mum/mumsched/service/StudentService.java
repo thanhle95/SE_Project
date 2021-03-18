@@ -7,7 +7,9 @@ import java.util.List;
 
 @Service
 public interface StudentService {
-    Student getStudentByEmail(String email);
+    Student getStudentByUserId(long userId);
+
+    Student getStudentByUserEmail(String email);
 
     Student getStudentById(long studentId);
 

@@ -37,7 +37,14 @@
                             <input id="userLastName" name="lastname" th:field="*{lastName}" class="form-control" type="text"/>
                         </p>
                         <p>
-                            <label for="userRole" class="form-label">Select Entry: </label>
+                            <label for="entryList" class="form-label">Select Entry: </label>
+                            <select id="entryList" name="user_entry" class="form-select" aria-label="Default select example">
+                                <option th:each="entryName : ${entryNameList}" th:value="${entryName}"
+                                        th:text="${entryName}"></option>
+                            </select>
+                        </p>
+                        <p>
+                            <label for="userRole" class="form-label">Select Role: </label>
                             <select id="userRole" name="user_role" class="form-select" aria-label="Default select example">
                                 <option selected>Student</option>
                                 <option>Faculty</option>

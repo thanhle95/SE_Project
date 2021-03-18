@@ -4,9 +4,11 @@ import edu.mum.mumsched.dao.SessionDao;
 import edu.mum.mumsched.domain.Session;
 import edu.mum.mumsched.service.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class SessionServiceImp implements SessionService {
     @Autowired
     SessionDao sessionDao;

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Schedule List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" th:href="@{/styles/admin_course.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--    <script th:src="@{/scripts/course_ctrl.js}"></script>-->
+</head>
+<body>
+<div th:replace="common/admin_header :: header"></div>
+<div th:replace="common/admin_header :: navi_student"></div>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body" th:each="block : ${schedule.blockList}">
+            <table class="table table-striped">
+                <tr>
+                    <th>Block</th>
+                    <th>Course</th>
+                    <th>Course Name</th>
+                    <th>Capacity</th>
+                    <th>Enrolled</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
+
+                </tr>
+                <tr th:each="sess : ${block.sessionList}">
+                    <td th:text="${block.blockName}"></td>
+                    <td th:text="${sess.course.courseCode}"></td>
+                    <td th:text="${sess.course.courseName}"></td>
+                    <td th:text="${sess.sessionCapacity}"></td>
+                    <td th:text="${sess.sessionEnrolled}"></td>
+                    <td th:text="${sess.startDate}"></td>
+                    <td th:text="${sess.endDate}"></td>
+                    <td>
+                        <a
+                                th:href="@{/student/register_course/{id}(id=${sess.sessionId})}"
+                                class="btn btn-success"
+                        >Sign Up</a
+                        >
+                </tr>
+            </table>
+            <!--            <a href="/course/add" class="btn btn-success">Add Course</a>-->
+        </div>
+        <div id="div_course_info" style="position: fixed;display:none;"></div>
+    </div>
+</div>
+</body>
+</html>
