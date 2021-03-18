@@ -23,7 +23,7 @@ public class CourseController {
     public String courseList(Model model) {
         List<Course> courseList = courseService.getAllCourse();
         model.addAttribute("courseList", courseList);
-        return "admin/courseList";
+        return "/admin/courseListForm";
     }
 
     // Display List Course
@@ -31,7 +31,7 @@ public class CourseController {
     public String courseDescription(Model model) {
         List<Course> courseList = courseService.getAllCourse();
         model.addAttribute("courseList", courseList);
-        return "admin/courseDescription";
+        return "/admin/courseDescriptionForm";
     }
 
     // Update Course Detail
