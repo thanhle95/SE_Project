@@ -61,7 +61,7 @@ public class ScheduleBuilderController {
         System.out.println(entryName);
         long entryId = entryService.getEntryByEntryName(entryName).getEntryId();
         Set<Course> courseList = new HashSet<>(courseService.getAllCourse());
-        Set<Block> blockList = new HashSet<>(blockService.getBlockByEntryName(entryName));
+        Set<Block> blockList = new HashSet<>(blockService.getBlockByEntryEntryId(entryId));
         scheduleBuilderService.runScheduleBuilder(entryId, courseList, blockList);
 
         String response = restService.getPostsPlainJSON();

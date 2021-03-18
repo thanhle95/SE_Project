@@ -15,5 +15,7 @@ public interface BlockService {
 
     public List<Block> getBlockByEntryName(String entryName);
 
+    public List<Block> getBlockByEntryEntryId(long entryId);
+
     public void deleteBlockByBlockID(long blockID);
 }
