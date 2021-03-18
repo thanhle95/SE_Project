@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="common/admin_header :: header"></div>
+<div th:replace="common/admin_header :: navi_admin"></div>
+<div class="container my-5">
+    <div class="div_login">
+        <h2>Register Account</h2>
+        <div class="card">
+            <div class="card-body">
+                <form name='f' th:action="@{/admin/process_register}" th:object="${user}" method='POST'>
+                    <fieldset>
+                        <p>
+                            <label for="userEmail" class="form-label">Email : </label>
+                            <input id="userEmail" name="username" th:field="*{email}" class="form-control" type="text"/>
+                        </p>
+                        <p>
+                            <label for="userPassword" class="form-label">Password : </label>
+                            <input id="userPassword" name="password" th:field="*{password}" class="form-control" type="password"/>
+                        </p>
+                        <p>
+                            <label for="userFirstName" class="form-label">FirstName : </label>
+                            <input id="userFirstName" name="firstname" th:field="*{firstName}" class="form-control" type="text"/>
+                        </p>
+                        <p>
+                            <label for="userLastName" class="form-label">LastName : </label>
+                            <input id="userLastName" name="lastname" th:field="*{lastName}" class="form-control" type="text"/>
+                        </p>
+                        <p>
+                            <label for="userRole" class="form-label">Select Entry: </label>
+                            <select id="userRole" name="user_role" class="form-select" aria-label="Default select example">
+                                <option selected>Student</option>
+                                <option>Faculty</option>
+                                <option>Admin</option>
+                            </select>
+                        </p>
+                        <p>
+                            <input id="btnSignup" class="btn btn-success" type="submit" value="submit"/>
+                        </p>
+                    </fieldset>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

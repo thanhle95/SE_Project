@@ -1,5 +1,7 @@
 package edu.mum.mumsched.domain;
 
+import org.springframework.context.annotation.Bean;
+
 import java.util.*;
 import javax.persistence.*;
 
@@ -14,8 +16,11 @@ public class User {
 
     private String password;
 
-    @Column(name = "full_name")
-    private String fullName;
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
 
     private boolean enabled;
 
@@ -29,11 +34,11 @@ public class User {
 
     // constructors, getters and setters are not shown for brevity
 
-    public Long getId() {
+    public Long getUserId() {
         return UserId;
     }
 
-    public void setId(Long id) {
+    public void setUserId(Long id) {
         this.UserId = id;
     }
 
@@ -53,14 +58,6 @@ public class User {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
     public boolean isEnabled() {
         return enabled;
     }
@@ -75,5 +72,21 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
