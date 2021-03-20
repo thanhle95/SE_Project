@@ -19,7 +19,7 @@ public class RestService {
 
     public String getPostsPlainJSON() {
         String url = "http://localhost:8001/api/section";
-        System.out.println(this.restTemplate.getForObject(url, String.class));
+//        System.out.println(this.restTemplate.getForObject(url, String.class));
         return this.restTemplate.getForObject(url, String.class);
     }
 }

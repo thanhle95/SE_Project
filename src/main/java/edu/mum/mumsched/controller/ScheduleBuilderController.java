@@ -4,8 +4,16 @@ package edu.mum.mumsched.controller;
 import com.google.gson.Gson;
 import edu.mum.mumsched.common.ScheduleStatus;
 import edu.mum.mumsched.domain.*;
+import edu.mum.mumsched.dto.ScheduleBuilderClient;
+import edu.mum.mumsched.dto.SectionDTO;
 import edu.mum.mumsched.service.*;
 import edu.mum.mumsched.service.imp.RestService;
+import feign.Feign;
+import feign.Logger;
+import feign.gson.GsonDecoder;
+import feign.gson.GsonEncoder;
+import feign.okhttp.OkHttpClient;
+import feign.slf4j.Slf4jLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +29,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 @Controller
 public class ScheduleBuilderController {
@@ -64,6 +73,27 @@ public class ScheduleBuilderController {
         Set<Block> blockList = new HashSet<>(blockService.getBlockByEntryEntryId(entryId));
         scheduleBuilderService.runScheduleBuilder(entryId, courseList, blockList);
 
+
+        ScheduleBuilderClient scheduleBuilderClient = Feign.builder()
+                .client(new OkHttpClient())
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .logger(new Slf4jLogger(ScheduleBuilderClient.class))
+                .logLevel(Logger.Level.FULL)
+                .target(ScheduleBuilderClient.class, "http://localhost:8001/api/section");
+
+
+        System.out.println("===========Start==========================");
+
+        System.out.println(scheduleBuilderClient);
+        List<ScheduleJson> scheduleJsons = scheduleBuilderClient.findAll().stream()
+                .map(SectionDTO::getScheduleJson)
+                .collect(Collectors.toList());
+
+        System.out.println(scheduleJsons.size());
+
+        System.out.println("===========End===========================");
+
         String response = restService.getPostsPlainJSON();
 
         try {
@@ -71,9 +101,10 @@ public class ScheduleBuilderController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(response);
+//        System.out.println(response);
 
         ScheduleJson[] scheduleJson = mapper.fromJson(response, ScheduleJson[].class);
+        System.out.println(scheduleJson.length);
         generateSchedule(scheduleJson);
         return "redirect:/schedule/builder";
     }
