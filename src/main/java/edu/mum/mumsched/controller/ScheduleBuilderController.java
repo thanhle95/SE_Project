@@ -74,25 +74,25 @@ public class ScheduleBuilderController {
         scheduleBuilderService.runScheduleBuilder(entryId, courseList, blockList);
 
 
-        ScheduleBuilderClient scheduleBuilderClient = Feign.builder()
-                .client(new OkHttpClient())
-                .encoder(new GsonEncoder())
-                .decoder(new GsonDecoder())
-                .logger(new Slf4jLogger(ScheduleBuilderClient.class))
-                .logLevel(Logger.Level.FULL)
-                .target(ScheduleBuilderClient.class, "http://localhost:8001/api/section");
+//        ScheduleBuilderClient scheduleBuilderClient = Feign.builder()
+//                .client(new OkHttpClient())
+//                .encoder(new GsonEncoder())
+//                .decoder(new GsonDecoder())
+//                .logger(new Slf4jLogger(ScheduleBuilderClient.class))
+//                .logLevel(Logger.Level.FULL)
+//                .target(ScheduleBuilderClient.class, "http://localhost:8001/api/section");
 
 
-        System.out.println("===========Start==========================");
-
-        System.out.println(scheduleBuilderClient);
-        List<ScheduleJson> scheduleJsons = scheduleBuilderClient.findAll().stream()
-                .map(SectionDTO::getScheduleJson)
-                .collect(Collectors.toList());
-
-        System.out.println(scheduleJsons.size());
-
-        System.out.println("===========End===========================");
+//        System.out.println("===========Start==========================");
+//
+//        System.out.println(scheduleBuilderClient);
+//        List<ScheduleJson> scheduleJsons = scheduleBuilderClient.findAll().stream()
+//                .map(SectionDTO::getScheduleJson)
+//                .collect(Collectors.toList());
+//
+//        System.out.println(scheduleJsons.size());
+//
+//        System.out.println("===========End===========================");
 
         String response = restService.getPostsPlainJSON();
 
@@ -101,7 +101,7 @@ public class ScheduleBuilderController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        System.out.println(response);
+        System.out.println(response);
 
         ScheduleJson[] scheduleJson = mapper.fromJson(response, ScheduleJson[].class);
         System.out.println(scheduleJson.length);
@@ -118,16 +118,20 @@ public class ScheduleBuilderController {
             session.setEndDate(LocalDate.parse(sched.end_date,DateTimeFormatter.RFC_1123_DATE_TIME));
             session.setSessionCapacity(courseService.getCourseByCourseID(sched.course_id).getCourseCapacity());
             Block block = blockService.getBlockByBlockID(sched.block_id);
-            block.addSession(session);
-            schedule.addBlock(block);
-            schedule.setEntry(block.getEntry());
-            schedule.setStatus(ScheduleStatus.DRAFT);
-            block.getEntry().addSchedule(schedule);
+            if(block !=null) {
+                block.addSession(session);
+                schedule.addBlock(block);
+                schedule.setEntry(block.getEntry());
+                schedule.setStatus(ScheduleStatus.DRAFT);
+                block.getEntry().addSchedule(schedule);
+            }
+            else {
+                System.out.println("Cannot generate schedule with empty block entry");
+                return;
+            }
         }
+        schedule.sortBlock();
         entryService.save(schedule.getEntry());
         scheduleService.save(schedule);
     }
-
-
-
 }

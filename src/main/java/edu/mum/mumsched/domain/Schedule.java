@@ -3,8 +3,8 @@ package edu.mum.mumsched.domain;
 import edu.mum.mumsched.common.ScheduleStatus;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 public class Schedule {
@@ -61,5 +61,12 @@ public class Schedule {
     public void addBlock(Block block) {
         this.blockList.add(block);
         //block.setSchedule(this);
+    }
+
+    public void sortBlock(){
+        this.blockList = this.blockList
+                         .stream()
+                         .sorted((b1,b2) -> (int)b2.getBlockId() - (int)b1.getBlockId())
+                         .collect(Collectors.toSet());
     }
 }

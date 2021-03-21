@@ -42,7 +42,7 @@ public class ScheduleController {
         for(Schedule sc : dbEntry.getScheduleList()) {
             schedule = sc;
         }
-
+        schedule.sortBlock();
         model.addAttribute("schedule", schedule);
         return "/admin/scheduleListForm";
     }

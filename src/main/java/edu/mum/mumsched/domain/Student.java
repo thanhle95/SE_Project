@@ -59,4 +59,12 @@ public class Student {
     public void addSession(Session session){
         this.sessions.add(session);
     }
+
+    public void removeSession(Session session) {
+        this.sessions.remove(session);
+    }
+
+    public Set<Session> getSessions() {
+        return sessions;
+    }
 }

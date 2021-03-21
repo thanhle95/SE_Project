@@ -33,7 +33,7 @@ public class Entry {
         block.setEntry(this);
     }
 
-    @OneToMany(mappedBy = "entry")
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "entry")
     private Set<Schedule> scheduleList = new HashSet<>();
 
     public void addSchedule(Schedule schedule) {

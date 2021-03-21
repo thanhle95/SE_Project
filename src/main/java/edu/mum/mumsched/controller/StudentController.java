@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class StudentController {
@@ -119,8 +121,9 @@ public class StudentController {
             for (Schedule sc : student.getEntry().getScheduleList()) {
                 schedule = sc;
             }
-
-            model.addAttribute("schedule", schedule);
+            List<Block> blockList = new ArrayList<>(schedule.getBlockList());
+            blockList.sort((b1,b2) -> (int)b1.getBlockId() - (int)b2.getBlockId());
+            model.addAttribute("blockList", blockList);
             model.addAttribute("student", student);
         }
         return "student/studentScheduleForm";
@@ -141,5 +144,36 @@ public class StudentController {
             }
         }
         return "redirect:/student/register_course_schedule";
+    }
+
+    @RequestMapping(value = "/student/cancel_course/{id}", method = RequestMethod.GET)
+    public String cancelCourse(@PathVariable("id") Long sessionId) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth.isAuthenticated()){
+            MiuUserDetails miuUserDetails = (MiuUserDetails)auth.getPrincipal();
+            Student student = studentService.getStudentByUserEmail(miuUserDetails.getUsername());
+            Session session = sessionService.getSessionBySessionId(sessionId);
+            if(session.getSessionEnrolled() < session.getSessionCapacity()) {
+                session.removeStudent(student);
+                student.removeSession(session);
+                studentService.save(student);
+                sessionService.save(session);
+            }
+        }
+        return "redirect:/student/register_course_schedule";
+    }
+
+    @RequestMapping(value = "/student/view_course_schedule", method = RequestMethod.GET)
+    public String courseSchedule(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth.isAuthenticated()) {
+            MiuUserDetails miuUserDetails = (MiuUserDetails) auth.getPrincipal();
+            Student student = studentService.getStudentByUserEmail(miuUserDetails.getUsername());
+            List<Session> sessionList = student.getSessions().stream().collect(Collectors.toList());
+
+            model.addAttribute("sessionList", sessionList);
+            model.addAttribute("student", student);
+        }
+        return "student/studentCourseScheduleForm";
     }
 }

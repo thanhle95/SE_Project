@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -109,11 +110,22 @@ public class Session {
         this.sessionEnrolled++;
     }
 
+    public void removeStudent(Student student) {
+        if(this.students.remove(student)){
+            this.sessionEnrolled--;
+        }
+    }
+
     public String getSessionClassRoom() {
         return sessionClassRoom;
     }
 
     public void setSessionClassRoom(String sessionClassRoom) {
         this.sessionClassRoom = sessionClassRoom;
+    }
+
+    public boolean isStudentRegistered(long studentID) {
+        Optional<Student> foundStudent = students.stream().filter(x -> x.getStudentId() == studentID ).findAny();
+        return foundStudent.isPresent();
     }
 }

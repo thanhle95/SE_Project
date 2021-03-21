@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Schedule List</title>
+    <title>Course Schedule</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" th:href="@{/styles/admin_header.css}">
     <link rel="stylesheet" th:href="@{/styles/admin_course.css}">
@@ -17,36 +17,19 @@
 <div th:replace="common/admin_header :: navi_student"></div>
 <div class="container my-2">
     <div class="card">
-        <div class="card-body" th:each="block : ${blockList}">
+        <div class="card-body">
             <table class="table table-striped">
                 <tr>
-                    <th>Block</th>
                     <th>Course</th>
                     <th>Course Name</th>
-                    <th>Capacity</th>
-                    <th>Enrolled</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th>Action</th>
-
                 </tr>
-                <tr th:each="sess : ${block.sessionList}">
-                    <td th:text="${block.blockName}"></td>
+                <tr th:each="sess : ${sessionList}">
                     <td th:text="${sess.course.courseCode}"></td>
                     <td th:text="${sess.course.courseName}"></td>
-                    <td th:text="${sess.sessionCapacity}"></td>
-                    <td th:text="${sess.sessionEnrolled}"></td>
                     <td th:text="${sess.startDate}"></td>
                     <td th:text="${sess.endDate}"></td>
-                    <td>
-                        <a th:if="${not sess.isStudentRegistered(student.studentId)}"
-                                th:href="@{/student/register_course/{id}(id=${sess.sessionId})}"
-                                class="btn btn-success"
-                        >Sign Up</a>
-                        <a th:if="${sess.isStudentRegistered(student.studentId)}"
-                           th:href="@{/student/cancel_course/{id}(id=${sess.sessionId})}"
-                           class="btn btn-secondary"
-                        >Cancel</a>
                 </tr>
             </table>
             <!--            <a href="/course/add" class="btn btn-success">Add Course</a>-->
